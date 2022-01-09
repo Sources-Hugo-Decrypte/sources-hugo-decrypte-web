@@ -9,13 +9,13 @@ function Header() {
         <nav className="ml-auto">
           <ul className="flex space-x-6">
             <li>
-              <a href="#" className="mx-2">Accueil</a>
+              <a href="/">Accueil</a>
             </li>
             <li>
-              <a href="#" className="mx-2">Recherche</a>
+              <a href="#">Recherche</a>
             </li>
             <li>
-              <a href="#" className="mx-2">À propos</a>
+              <a href="#">À propos</a>
             </li>
           </ul>
         </nav>
