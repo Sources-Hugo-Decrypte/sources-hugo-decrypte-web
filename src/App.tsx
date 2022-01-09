@@ -1,10 +1,9 @@
 import React from 'react';
+import Header from './Header/Header';
 
 function App() {
   return (
-    <h1 className="text-4xl font-light text-center my-24">
-      Sources Hugo Décrypte
-    </h1>
+    <Header />
   );
 }
 
