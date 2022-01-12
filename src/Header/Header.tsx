@@ -4,7 +4,7 @@ import githubMark from './GitHub-Mark.png'
 
 function Header() {
   return (
-    <header className="p-2 border-b border-gray-200">
+    <header className="p-2 border-b border-gray-200 shadow-sm">
       <div className="flex items-center">
         <img className="inline-block w-36 rounded" src={logo} alt="Sources Hugo Décrypte Logo" />
         <nav className="ml-auto">
