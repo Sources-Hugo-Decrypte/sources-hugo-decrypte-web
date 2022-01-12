@@ -1,4 +1,5 @@
 import Header from './Header/Header';
+import Remark from "./Remark/Remark";
 import Top10 from "./Top10/Top10";
 
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <Header />
+      <Remark />
       <Top10 {...{labels, totalLinks, percentages}} />
     </>
   );
