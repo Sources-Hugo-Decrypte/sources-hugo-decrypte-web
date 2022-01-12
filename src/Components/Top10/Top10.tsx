@@ -9,7 +9,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import SectionTitle from "../Common/SectionTitle";
-import Top10Data from "../Data/Top10Data";
+import Top10Data from "../../Data/Top10Data";
 
 ChartJS.register(
   CategoryScale,
