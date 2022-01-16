@@ -20,26 +20,6 @@ ChartJS.register(
   Legend
 );
 
-const options = {
-  indexAxis: 'y' as const,
-  elements: {
-    bar: {
-      borderWidth: 2,
-    },
-  },
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'bottom' as const,
-    },
-    title: {
-      position: 'bottom' as const,
-      display: true,
-      text: 'Top 10 des sources',
-    }
-  },
-};
-
 function Top10(rawData: Top10Data) {
   const barData = {
     labels: rawData.labels,
@@ -48,15 +28,45 @@ function Top10(rawData: Top10Data) {
         label: 'Nombre de liens cités par source',
         data: rawData.labels.map((_label, index) => rawData.totalLinks[index]),
         borderColor: '#4e5ff9',
+        borderRadius: 4,
         backgroundColor: '#9da6fb',
-      },
-      {
-        label: 'Pourcentage (%)',
-        data: rawData.labels.map((_label, index) => rawData.percentages[index]),
-        borderColor: '#fc73b5',
-        backgroundColor: '#fec3df',
       }
-    ],
+    ]
+  }
+
+  const options = {
+    indexAxis: 'y' as const,
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
+    },
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
+      },
+      title: {
+        position: 'bottom' as const,
+        display: true,
+        text: 'Top 10 des sources',
+      },
+      tooltip: {
+        callbacks: {
+          footer: function(tooltipItems: Array<any>) {
+            let footerText: string = ''
+
+            tooltipItems.forEach((tooltipItem) => {
+              const index: number = tooltipItem.dataIndex
+
+              footerText += 'Représente ' + rawData.percentages[index] + '% des liens au total';
+            });
+
+            return footerText
+          }
+        }
+      }
+    },
   }
 
   return <section className="w-2/3 mx-auto">
