@@ -48,6 +48,7 @@ function Top10(rawData: Top10Data) {
         label: 'Nombre de liens cités par source',
         data: rawData.labels.map((_label, index) => rawData.totalLinks[index]),
         borderColor: '#4e5ff9',
+        borderRadius: 4,
         backgroundColor: '#9da6fb',
       },
       {
