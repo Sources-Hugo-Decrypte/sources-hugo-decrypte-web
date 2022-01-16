@@ -71,7 +71,7 @@ function Top10(rawData: Top10Data) {
 
   return <section className="w-2/3 mx-auto">
     <SectionTitle title="Top 10 des sources" />
-    <Bar options={options} data={barData} />
+    <Bar options={options} data={barData} className="shadow-md rounded p-5"/>
   </section>;
 }
 
