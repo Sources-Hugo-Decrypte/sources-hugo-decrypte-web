@@ -1,8 +1,7 @@
 import Header from './Header/Header';
-import Remark from "./Remark/Remark";
-import Top10 from "./Top10/Top10";
-
-
+import Remark from './Remark/Remark';
+import Top10 from './Top10/Top10';
+import Footer from './Footer/Footer'
 
 function App() {
 
@@ -16,6 +15,7 @@ function App() {
       <Header />
       <Remark />
       <Top10 {...{labels, totalLinks, percentages}} />
+      <Footer />
     </>
   );
 }
