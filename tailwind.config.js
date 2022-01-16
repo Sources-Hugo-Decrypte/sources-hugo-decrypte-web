@@ -12,7 +12,7 @@ module.exports = {
       white: colors.white,
       gray: colors.gray,
       'blue': {
-        50:  '#b0b8fc',
+        50: '#b0b8fc',
         100: '#9da6fb',
         200: '#7582fa',
         300: '#4e5ff9',
@@ -24,7 +24,7 @@ module.exports = {
         900: '#030a4f',
       },
       'purple': {
-        50:  '#fed7ea',
+        50: '#fed7ea',
         100: '#fec3df',
         200: '#fd9bca',
         300: '#fc73b5',
@@ -35,6 +35,18 @@ module.exports = {
         800: '#a0034f',
         900: '#78023b',
       },
+      'orange': {
+        50: '#fdc269',
+        100: '#fcb850',
+        200: '#fcae37',
+        300: '#fba41e',
+        400: '#fb9a05',
+        500: '#e28b05',
+        600: '#b06c04',
+        700: '#975c03',
+        800: '#7e4d03',
+        900: '#643e02',
+      }
     },
     extend: {},
   },
