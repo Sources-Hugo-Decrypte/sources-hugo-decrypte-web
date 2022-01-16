@@ -9,13 +9,13 @@ function Header() {
         <nav className="ml-auto">
           <ul className="flex space-x-6">
             <li>
-              <a href="/" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">Accueil</a>
+              <a href="/" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-orange-400">Accueil</a>
             </li>
             <li>
-              <a href="#" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">Recherche</a>
+              <a href="#" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-orange-400">Recherche</a>
             </li>
             <li>
-              <a href="#" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">À propos</a>
+              <a href="#" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-orange-400">À propos</a>
             </li>
           </ul>
         </nav>
