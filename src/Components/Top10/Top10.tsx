@@ -25,7 +25,7 @@ function Top10(rawData: Top10Data) {
     labels: rawData.labels,
     datasets: [
       {
-        label: 'Nombre de liens cités par source',
+        label: 'Nombre de liens',
         data: rawData.labels.map((_label, index) => rawData.totalLinks[index]),
         borderColor: '#4e5ff9',
         borderRadius: 4,
@@ -44,12 +44,7 @@ function Top10(rawData: Top10Data) {
     responsive: true,
     plugins: {
       legend: {
-        position: 'bottom' as const,
-      },
-      title: {
-        position: 'bottom' as const,
-        display: true,
-        text: 'Top 10 des sources',
+        display: false,
       },
       tooltip: {
         callbacks: {
@@ -71,6 +66,9 @@ function Top10(rawData: Top10Data) {
 
   return <section className="w-2/3 mx-auto">
     <SectionTitle title="Top 10 des sources" />
+    <p className="mb-4 text-sm text-gray-700">
+      Ce graphique présente le nombre de liens cités par source depuis le 20/12/2015. Pour voir l’ensemble des sources <a href="/" className="underline">cliquez-ici</a>.
+    </p>
     <Bar options={options} data={barData} className="shadow-md rounded p-5"/>
   </section>;
 }
