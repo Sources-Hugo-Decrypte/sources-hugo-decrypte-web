@@ -22,7 +22,7 @@ function Header() {
           </ul>
         </nav>
         <div className="border-l border-gray-200 ml-4 pl-4">
-          <a href="https://github.com/Sources-Hugo-Decrypte/sources-hugo-decrypte-web" rel="external nofollow" title="Voir les sources sur GitHub">
+          <a href="https://github.com/Sources-Hugo-Decrypte/" rel="external nofollow" title="Voir les sources sur GitHub">
             <img src={githubMark} alt="Github Mark" className="h-6 w-6" />
           </a>
         </div>
