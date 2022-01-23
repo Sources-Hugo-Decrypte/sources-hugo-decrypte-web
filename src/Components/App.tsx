@@ -4,6 +4,14 @@ import Top10 from './Top10/Top10';
 import Footer from './Footer/Footer'
 import Overview from './Overview/Overview';
 import OverviewData from "../Data/OverviewData";
+import { useEffect } from "react";
+
+async function FetchHomeData() {
+  const response = await fetch('/.netlify/functions/home?name=World')
+    .then(response => response.json())
+
+    console.table(response)
+}
 
 function App() {
 
@@ -17,14 +25,19 @@ function App() {
   // For now, Top10 raw data is written in hard copy
   const labels = ['lemonde.fr', 'francetvinfo.fr', '20minutes.fr', 'leparisien.fr', 'lefigaro.fr', 'huffingtonpost.fr', 'bfmtv.com', 'ouest-france.fr', 'lci.fr', 'courrierinternational.com'];
   const totalLinks = [895, 732, 330, 314, 306, 260, 229, 229, 203, 178];
-  const percentages = [7.56, 6.19, 2.79, 2.65, 2.59, 2.19, 1.94, 1.94, 1.72, 1.5]; 
+  const percentages = [7.56, 6.19, 2.79, 2.65, 2.59, 2.19, 1.94, 1.94, 1.72, 1.5];
+
+  useEffect(() => {
+    FetchHomeData()
+  }, [])
+
 
   return (
     <>
       <Header />
       <Remark />
-      <Overview {...overviewData}/>
-      <Top10 {...{labels, totalLinks, percentages}} />
+      <Overview {...overviewData} />
+      <Top10 {...{ labels, totalLinks, percentages }} />
       <Footer />
     </>
   );
