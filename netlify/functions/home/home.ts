@@ -23,14 +23,15 @@ export const handler: Handler = async (event, context) => {
 
   await client.connect()
 
-  const totalVideosRes = await client.query('SELECT COUNT(*) FROM video_table;')
-  const totalLinksRes = await client.query('SELECT COUNT(*) FROM url_table WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full);')
-  const totalSourcesRes = await client.query('SELECT COUNT(*) FROM register_table WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=register_url_short);')
+  const overviewDataRes = await client.query(`SELECT total_videos, total_links, total_sources
+                                  FROM (SELECT COUNT(*) as total_videos FROM video_table) total_videos
+                                  CROSS JOIN (SELECT COUNT(*) as total_links FROM url_table WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full)) total_links
+                                  CROSS JOIN (SELECT COUNT(*) as total_sources FROM register_table WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=register_url_short)) total_sources`)
   const top10Res = await client.query('SELECT register_common_name AS "label", COUNT(*) AS "number_urls" FROM register_table INNER JOIN url_table ON register_url_short=url_short INNER JOIN video_table ON url_video_id=video_id WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full) GROUP BY register_common_name ORDER BY number_urls DESC LIMIT 10;')
   
-  overviewData.totalVideos = totalVideosRes.rows[0].count
-  overviewData.totalLinks = totalLinksRes.rows[0].count
-  overviewData.totalSources = totalSourcesRes.rows[0].count
+  overviewData.totalVideos = overviewDataRes.rows[0].total_videos
+  overviewData.totalLinks = overviewDataRes.rows[0].total_links
+  overviewData.totalSources = overviewDataRes.rows[0].total_sources
 
   top10Res.rows.forEach(row => {
     top10Data.labels.push(row.label)
