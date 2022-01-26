@@ -14,12 +14,11 @@ export const handler: Handler = async (event, context) => {
     totalSources: 0,
     totalVideos: 0
   }
-  
-  // For now, TOP10 is written in hard copy
+
   let top10Data: Top10Data = {
-    labels: ['lemonde.fr', 'francetvinfo.fr', '20minutes.fr', 'leparisien.fr', 'lefigaro.fr', 'huffingtonpost.fr', 'bfmtv.com', 'ouest-france.fr', 'lci.fr', 'courrierinternational.com'],
-    totalLinks: [895, 732, 330, 314, 306, 260, 229, 229, 203, 178],
-    percentages: [7.56, 6.19, 2.79, 2.65, 2.59, 2.19, 1.94, 1.94, 1.72, 1.5]
+    labels: new Array<string>(),
+    totalLinks: new Array<number>(),
+    percentages: new Array<number>()
   }
 
   await client.connect()
@@ -27,10 +26,17 @@ export const handler: Handler = async (event, context) => {
   const totalVideosRes = await client.query('SELECT COUNT(*) FROM video_table;')
   const totalLinksRes = await client.query('SELECT COUNT(*) FROM url_table WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full);')
   const totalSourcesRes = await client.query('SELECT COUNT(*) FROM register_table WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=register_url_short);')
+  const top10Res = await client.query('SELECT register_common_name AS "label", COUNT(*) AS "number_urls" FROM register_table INNER JOIN url_table ON register_url_short=url_short INNER JOIN video_table ON url_video_id=video_id WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full) GROUP BY register_common_name ORDER BY number_urls DESC LIMIT 10;')
   
   overviewData.totalVideos = totalVideosRes.rows[0].count
   overviewData.totalLinks = totalLinksRes.rows[0].count
   overviewData.totalSources = totalSourcesRes.rows[0].count
+
+  top10Res.rows.forEach(row => {
+    top10Data.labels.push(row.label)
+    top10Data.totalLinks.push(Number(row.number_urls))
+    top10Data.percentages.push(Number((row.number_urls / overviewData.totalLinks * 100).toFixed(2)))
+  });
 
   await client.end()
 
