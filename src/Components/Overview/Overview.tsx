@@ -5,7 +5,7 @@ import React from "react"
 
 function OverviewItem({ value, title, description, icon }: { value: number, title: string, description: string | React.ReactNode, icon?: React.ReactNode }) {
     return <div className="max-w-xs">
-        <div className="flex items-center">
+        <div className="flex md:items-center">
             <h3 className="font-bold text-3xl mr-1">{value}</h3>
             {icon}
         </div>
@@ -15,9 +15,9 @@ function OverviewItem({ value, title, description, icon }: { value: number, titl
 }
 
 function Overview(data: OverviewData) {
-    return <section className="w-2/3 mx-auto my-16">
+    return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
         <SectionTitle title="En bref" />
-        <div className="shadow-md rounded p-5 flex justify-around gap-10">
+        <div className="shadow-md rounded p-5 flex flex-col md:flex-row md:justify-around gap-10">
             <OverviewItem value={data.totalVideos} title="Vidéos" description="Nombre total de vidéos sur la chaîne Hugo Décrypte - Actus du Jour." icon={<VideoCameraIcon className="h-8 w-8" />} />
             <OverviewItem value={data.totalSources} title="Sources" description={<>Nombre total des sources citées.<br/> (Exemple: lemonde.fr, francetvinfo.fr, ...)</>} icon={<NewspaperIcon className="h-7 w-7" />} />
             <OverviewItem value={data.totalLinks} title="Liens" description="Nombre total de liens renseignés toutes sources confondues." icon={<LinkIcon className="h-6 w-6" />} />
