@@ -1,7 +1,7 @@
 import Header from './Header/Header';
 import Remark from './Remark/Remark';
 import Top10 from './Top10/Top10';
-import NbSources from './NbSources/NbSources';
+import NbSources from './Period/Period';
 import Footer from './Footer/Footer';
 import Overview from './Overview/Overview';
 import HomeData from "../Data/HomeData";
@@ -28,7 +28,7 @@ function App() {
       <Remark />
       <Overview {...homeData.overview} />
       <Top10 {...homeData.top10} />
-      <NbSources {...homeData.nbSources} />
+      <NbSources {...homeData.period} />
       <Footer />
     </>
   );

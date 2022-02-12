@@ -1,11 +1,11 @@
 import OverviewData from "./OverviewData"
 import Top10Data from "./Top10Data"
-import NbSourcesData from "./NbSourcesData"
+import PeriodData from "./PeriodData"
 
 type HomeData = {
     overview: OverviewData,
     top10: Top10Data,
-    nbSources: NbSourcesData
+    period: PeriodData
 }
 
 export default HomeData

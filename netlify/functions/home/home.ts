@@ -17,9 +17,16 @@ export const handler: Handler = async (event, context) => {
       totalLinks: new Array<number>(),
       percentages: new Array<number>()
     },
-    nbSources: {
-      date: new Array<string>(),
-      totalSources: new Array<number>(),
+    period: {
+      nbSources: {
+        date: new Array<string>(),
+        totalSources: new Array<number>()
+      },
+      top10: {
+        labels: new Array<string>(),
+        totalLinks: new Array<number>(),
+        percentages: new Array<number>()
+      },
     }
   }
 
@@ -28,7 +35,8 @@ export const handler: Handler = async (event, context) => {
                                   CROSS JOIN (SELECT COUNT(*) as total_links FROM url_table WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full)) total_links
                                   CROSS JOIN (SELECT COUNT(*) as total_sources FROM register_table WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=register_url_short)) total_sources`
   const top10Res = await sql`SELECT register_common_name AS "label", COUNT(*) AS "number_urls" FROM register_table INNER JOIN url_table ON register_url_short=url_short INNER JOIN video_table ON url_video_id=video_id WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full) GROUP BY register_common_name ORDER BY number_urls DESC LIMIT 10;`
-  const nbSourcesRes = await sql`SELECT video_id, video_date AS "date", COUNT(*) AS "number_urls" FROM video_table INNER JOIN url_table ON video_id=url_video_id WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full) AND video_date BETWEEN '2022-01-01' AND '2022-02-20 23:59:59' GROUP BY video_id, video_date ORDER BY video_date;`
+  const periodTop10Res = await sql`SELECT register_common_name AS "label", COUNT(*) AS "number_urls" FROM register_table INNER JOIN url_table ON register_url_short=url_short INNER JOIN video_table ON url_video_id=video_id WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full) AND video_date BETWEEN '2022-01-01' AND '2022-02-20 23:59:59' GROUP BY register_common_name ORDER BY number_urls DESC LIMIT 10;`
+  const periodNbSourcesRes = await sql`SELECT video_id, video_date AS "date", COUNT(*) AS "number_urls" FROM video_table INNER JOIN url_table ON video_id=url_video_id WHERE NOT EXISTS (SELECT * FROM blacklist_table WHERE blacklist_url=url_short OR blacklist_url=url_full) AND video_date BETWEEN '2022-01-01' AND '2022-02-20 23:59:59' GROUP BY video_id, video_date ORDER BY video_date;`
   
   sql.end()
 
@@ -42,9 +50,15 @@ export const handler: Handler = async (event, context) => {
     homeData.top10.percentages.push(Number((row.number_urls / homeData.overview.totalLinks * 100).toFixed(2)))
   });
 
-  nbSourcesRes.forEach(row => {
-    homeData.nbSources.date.push(new Date(row.date).toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'}))
-    homeData.nbSources.totalSources.push(Number(row.number_urls))
+  periodTop10Res.forEach(row => {
+    homeData.period.top10.labels.push(row.label)
+    homeData.period.top10.totalLinks.push(Number(row.number_urls))
+    homeData.period.top10.percentages.push(Number((row.number_urls / homeData.overview.totalLinks * 100).toFixed(2)))
+  });
+
+  periodNbSourcesRes.forEach(row => {
+    homeData.period.nbSources.date.push(new Date(row.date).toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'}))
+    homeData.period.nbSources.totalSources.push(Number(row.number_urls))
   });
 
   return {
