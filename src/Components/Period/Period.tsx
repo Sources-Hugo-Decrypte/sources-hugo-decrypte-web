@@ -105,7 +105,10 @@ function Period(rawData: PeriodData) {
       Les graphiques suivants présentent les sources utilisées sur une période donnée.
     </p>
     <div className='calendar-container'>
-      <Calendar onChange={onChange} value={value} />
+      <Calendar
+      onChange={onChange}
+      value={value}
+      selectRange={true}/>
     </div>
     <div className="shadow-md rounded md:p-5">
       <p className="mb-4 text-sm text-gray-700">Top 10 sur cette période :</p>
