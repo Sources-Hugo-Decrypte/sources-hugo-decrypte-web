@@ -31,6 +31,7 @@ ChartJS.register(
   Legend
 );
 
+
 function Period(rawData: PeriodData) {
 
   const barData = {
@@ -106,7 +107,8 @@ function Period(rawData: PeriodData) {
   
   function afficherPeriode() {
     //console.log("##### startDate : ", startDate.toLocaleDateString('fr-FR'), "|", "endDate : ", endDate.toLocaleDateString('fr-FR'));
-    barData.labels[0] = "lefauxmonde.fr";
+    if(barData.labels[0] === "lemonde.fr"){barData.labels[0] = "lefauxmonde.fr"}
+    else{barData.labels[0] = "lemonde.fr"};
     barReference?.update();
     lineReference?.update();
   }
