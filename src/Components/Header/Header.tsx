@@ -17,7 +17,7 @@ function Header() {
               <a href="/" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">Recherche</a>
             </li>
             <li>
-              <a href="/" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">À propos</a>
+              <a href="/about" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">À propos</a>
             </li>
             <li className="md:hidden">
               <a href="https://github.com/Sources-Hugo-Decrypte/" rel="external nofollow" title="Voir les sources sur GitHub">
