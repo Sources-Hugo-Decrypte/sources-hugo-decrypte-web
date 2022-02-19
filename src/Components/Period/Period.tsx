@@ -115,7 +115,7 @@ function Period(rawData: PeriodData) {
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  startDate.setDate(endDate.getDate()-10);  // set default 'startDate' 10 days earlier than 'endDate'
+  //startDate.setDate(todayDate.getDate()-10);  // set default 'startDate' 10 days earlier than 'endDate' -> causes unexpected behaviour
 
   return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
     <SectionTitle title="Par période" />
