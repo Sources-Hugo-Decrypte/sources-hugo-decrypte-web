@@ -19,6 +19,7 @@ import { fr } from 'date-fns/locale'
 
 import SectionTitle from "../Common/SectionTitle";
 import PeriodData from "../../Data/PeriodData";
+import { ChartJSOrUndefined } from 'react-chartjs-2/dist/types';
 
 ChartJS.register(
   CategoryScale,
@@ -99,9 +100,15 @@ function Period(rawData: PeriodData) {
       y: {min: 0}
     },
   };
+
+  var barReference: ChartJSOrUndefined<"bar", number[], string> | null;
+  var lineReference: ChartJSOrUndefined<"line", number[], string> | null;
   
   function afficherPeriode() {
-    console.log("##### startDate : ", startDate.toLocaleDateString('fr-FR'), "|", "endDate : ", endDate.toLocaleDateString('fr-FR'));
+    //console.log("##### startDate : ", startDate.toLocaleDateString('fr-FR'), "|", "endDate : ", endDate.toLocaleDateString('fr-FR'));
+    barData.labels[0] = "lefauxmonde.fr";
+    barReference?.update();
+    lineReference?.update();
   }
 
   const [startDate, setStartDate] = useState(new Date());
@@ -139,9 +146,9 @@ function Period(rawData: PeriodData) {
     </button>
     <div className="shadow-md rounded md:p-5">
       <p className="mb-4 text-sm text-gray-700">Top 10 sur cette période :</p>
-      <Bar options={barOptions} data={barData} />
+      <Bar options={barOptions} data={barData} ref={(reference) => barReference=reference}/>
       <p className="mb-4 text-sm text-gray-700">Nombre de sources par vidéo :</p>
-      <Line options={lineOptions} data={lineData} />
+      <Line options={lineOptions} data={lineData} ref={(reference) => lineReference=reference}/>
     </div>
   </section>;
 }
