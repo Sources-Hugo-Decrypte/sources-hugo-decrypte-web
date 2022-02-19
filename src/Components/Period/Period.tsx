@@ -9,11 +9,14 @@ import {
   Legend,
   } from 'chart.js';
 
-import { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+
+import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import { fr } from 'date-fns/locale'
+
 import SectionTitle from "../Common/SectionTitle";
 import PeriodData from "../../Data/PeriodData";
 
@@ -96,20 +99,44 @@ function Period(rawData: PeriodData) {
       y: {min: 0}
     },
   };
+  
+  function afficherPeriode() {
+    console.log("##### startDate : ", startDate.toLocaleDateString('fr-FR'), "|", "endDate : ", endDate.toLocaleDateString('fr-FR'));
+  }
 
-  const [value, onChange] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  startDate.setDate(endDate.getDate()-10);  // set default 'startDate' 10 days earlier than 'endDate'
 
   return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
     <SectionTitle title="Par période" />
     <p className="mb-4 text-sm text-gray-700">
       Les graphiques suivants présentent les sources utilisées sur une période donnée.
     </p>
-    <div className='calendar-container'>
-      <Calendar
-      onChange={onChange}
-      value={value}
-      selectRange={true}/>
-    </div>
+
+    <DatePicker
+      selected={startDate}
+      onChange={(date: Date) => setStartDate(date)}
+      startDate={startDate}
+      endDate={endDate}
+      maxDate={endDate}
+      dateFormat="dd/MM/yyyy"
+      locale={fr}
+    />
+
+    <DatePicker
+      selected={endDate}
+      onChange={(date: Date) => setEndDate(date)}
+      startDate={startDate}
+      endDate={endDate}
+      minDate={startDate}
+      dateFormat="dd/MM/yyyy"
+      locale={fr}
+    />
+    
+    <button onClick={afficherPeriode}>
+      Afficher
+    </button>
     <div className="shadow-md rounded md:p-5">
       <p className="mb-4 text-sm text-gray-700">Top 10 sur cette période :</p>
       <Bar options={barOptions} data={barData} />
