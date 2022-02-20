@@ -12,7 +12,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
 
-import { useState } from 'react';
+import { forwardRef, LegacyRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { fr } from 'date-fns/locale'
@@ -30,7 +30,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 
 function Period(rawData: PeriodData) {
 
@@ -59,22 +58,6 @@ function Period(rawData: PeriodData) {
       legend: {
         display: false,
       },
-      // Is it really usefull to keep global percentages in this case ?
-      /*tooltip: {
-        callbacks: {
-          footer: function(tooltipItems: Array<any>) {
-            let footerText: string = ''
-
-            tooltipItems.forEach((tooltipItem) => {
-              const index: number = tooltipItem.dataIndex
-
-              footerText += 'Représente ' + rawData.top10.percentages[index] + '% des liens au total';
-            });
-
-            return footerText
-          }
-        }
-      }*/
     },
   }
 
@@ -106,7 +89,6 @@ function Period(rawData: PeriodData) {
   var lineReference: ChartJSOrUndefined<"line", number[], string> | null;
   
   function afficherPeriode() {
-    //console.log("##### startDate : ", startDate.toLocaleDateString('fr-FR'), "|", "endDate : ", endDate.toLocaleDateString('fr-FR'));
     if(barData.labels[0] === "lemonde.fr"){barData.labels[0] = "lefauxmonde.fr"}
     else{barData.labels[0] = "lemonde.fr"};
     barReference?.update();
@@ -115,7 +97,6 @@ function Period(rawData: PeriodData) {
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  //startDate.setDate(todayDate.getDate()-10);  // set default 'startDate' 10 days earlier than 'endDate' -> causes unexpected behaviour
 
   return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
     <SectionTitle title="Par période" />
@@ -123,25 +104,33 @@ function Period(rawData: PeriodData) {
       Les graphiques suivants présentent les sources utilisées sur une période donnée.
     </p>
 
-    <DatePicker
-      selected={startDate}
-      onChange={(date: Date) => setStartDate(date)}
-      startDate={startDate}
-      endDate={endDate}
-      maxDate={endDate}
-      dateFormat="dd/MM/yyyy"
-      locale={fr}
-    />
+    <div className="flex flex-col md:flex-row md:justify-around gap-3">
+      Début:
+      <DatePicker
+        selected={startDate}
+        onChange={(date: Date) => setStartDate(date)}
+        startDate={startDate}
+        endDate={endDate}
+        minDate={new Date("12/20/2015")}
+        maxDate={endDate}
+        dateFormat="dd/MM/yyyy"
+        locale={fr}
+      />
+    </div>
 
-    <DatePicker
-      selected={endDate}
-      onChange={(date: Date) => setEndDate(date)}
-      startDate={startDate}
-      endDate={endDate}
-      minDate={startDate}
-      dateFormat="dd/MM/yyyy"
-      locale={fr}
-    />
+    <div className="flex flex-col md:flex-row md:justify-around gap-3">
+      Fin:
+      <DatePicker
+        selected={endDate}
+        onChange={(date: Date) => setEndDate(date)}
+        startDate={startDate}
+        endDate={endDate}
+        minDate={startDate}
+        maxDate={new Date()}
+        dateFormat="dd/MM/yyyy"
+        locale={fr}
+      />
+    </div>
     
     <button onClick={afficherPeriode}>
       Afficher
