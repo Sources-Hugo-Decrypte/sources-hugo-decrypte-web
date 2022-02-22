@@ -11,7 +11,7 @@ import LastVideo from './LastVideo/LastVideo';
 
 function App() {
   const [homeData, loading] = useFetch<HomeData>('/.netlify/functions/home')
-  const [lastVideoData, loading2] = useFetch<LastVideoData>('/.netlify/functions/lastvideo')
+  const [lastVideoData] = useFetch<LastVideoData>('/.netlify/functions/lastvideo')
 
   if (loading) {
     return (<>
