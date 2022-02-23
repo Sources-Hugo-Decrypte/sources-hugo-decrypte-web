@@ -1,5 +1,6 @@
 import logo from './logo.svg'
 import githubMark from './GitHub-Mark.png'
+import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -11,13 +12,25 @@ function Header() {
         <nav className="md:ml-auto">
           <ul className="flex justify-around mt-2 md:mt-0 md:space-x-6">
             <li>
-              <a href="/" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">Accueil</a>
+              <NavLink to="/"
+                className={({ isActive }) => {
+                  if (isActive) return "p-2 rounded-md text-white bg-gradient-to-r from-purple-400 to-blue-400"
+                  else return "p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400"
+                }}>Accueil</NavLink>
             </li>
             <li>
-              <a href="/" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">Recherche</a>
+            <NavLink to="/search"
+                className={({ isActive }) => {
+                  if (isActive) return "p-2 rounded-md text-white bg-gradient-to-r from-purple-400 to-blue-400"
+                  else return "p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400"
+                }}>Recherche</NavLink>
             </li>
             <li>
-              <a href="/about" className="p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400">À propos</a>
+            <NavLink to="/about"
+                className={({ isActive }) => {
+                  if (isActive) return "p-2 rounded-md text-white bg-gradient-to-r from-purple-400 to-blue-400"
+                  else return "p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400"
+                }}>À propos</NavLink>
             </li>
             <li className="md:hidden">
               <a href="https://github.com/Sources-Hugo-Decrypte/" rel="external nofollow" title="Voir les sources sur GitHub">
