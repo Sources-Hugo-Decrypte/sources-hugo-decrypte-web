@@ -11,7 +11,7 @@ function About() {
     <div className="m-4 p-4 md:mx-auto md:my-4 md:w-1/2">
       <p className="shadow-md rounded p-5 my-8">
         <p className="font-bold text-lg mb-2">À propos</p>
-        Ce site a pour but de fournir des statistiques sur les sources utilisées par Hugo Décrypte dans sa chaîne youtube <a className="underline" href="https://www.youtube.com/c/HugoD%C3%A9crypte" rel="external nofollow">Hugo Décrypte - Actus du Jour</a>, qui présente des vidéos sur l'actualité.
+        Ce site a pour but de fournir des statistiques sur les sources utilisées par Hugo Décrypte dans sa chaîne YouTube <a className="underline" href="https://www.youtube.com/c/HugoD%C3%A9crypte" rel="external nofollow">Hugo Décrypte - Actus du Jour</a>, qui présente des vidéos sur l'actualité.
         <br /><br />Nous souhaitons donner des outils et des pistes de réflexion à toutes celles et ceux qui se questionnent sur la neutralité des propos d'Hugo Décrypte.
         <br /><br />Nous ne sommes pas rattachés à Hugo Décrypte et nous présentons ces données en nous efforçant d'être le plus impartial possible.
       </p>
@@ -38,7 +38,7 @@ function About() {
       </div>
       <p className="shadow-md rounded p-5 my-8">
         <p className="font-bold text-lg mb-2">Remerciements</p>
-        Nous adressons des remerciements à l'ensemble de la comunauté open source, sans laquelle ce projet n'aurait jamais vu le jour. 😉
+        Nous adressons des remerciements à l'ensemble de la communauté Open Source, sans laquelle ce projet n'aurait jamais vu le jour. 😉
         <br /><br />Le code source est en accès libre <a className="underline" href="https://github.com/Sources-Hugo-Decrypte/" rel="external nofollow" title="Voir les sources sur GitHub">ici</a>.
       </p>
     </div>
