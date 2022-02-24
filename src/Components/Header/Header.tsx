@@ -7,7 +7,7 @@ function Header() {
     <header className="p-2 border-b border-gray-200 shadow-sm">
       <div className="flex flex-col md:flex-row md:items-center">
         <a href="/">
-          <img className="inline-block h-12" src={logo} alt="Sources Hugo Décrypte Logo" />
+          <img className="inline-block h-12 mb-1" src={logo} alt="Sources Hugo Décrypte Logo" />
         </a>
         <nav className="md:ml-auto">
           <ul className="flex justify-around mt-2 md:mt-0 md:space-x-6">
