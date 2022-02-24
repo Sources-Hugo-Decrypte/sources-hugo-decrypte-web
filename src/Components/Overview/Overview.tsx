@@ -4,7 +4,7 @@ import { VideoCameraIcon, NewspaperIcon, LinkIcon } from '@heroicons/react/outli
 import React from "react"
 
 function OverviewItem({ value, title, description, icon }: { value: number, title: string, description: string | React.ReactNode, icon?: React.ReactNode }) {
-    return <div className="max-w-xs">
+    return <div className="w-64">
         <div className="flex md:items-center">
             <h3 className="font-bold text-3xl mr-1">{value}</h3>
             {icon}
