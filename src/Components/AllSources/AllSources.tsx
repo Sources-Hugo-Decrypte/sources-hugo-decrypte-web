@@ -1,11 +1,25 @@
 import AllSourcesData from '../../Data/AllSourcesData';
 import useFetch from "../../Utils/useFetch";
 import SectionTitle from "../Common/SectionTitle";
-//import List from 'list.js';
+import List from 'list.js';
 
 function AllSources() {    
 
     const [data, loading] = useFetch<AllSourcesData>('/.netlify/functions/allsources');
+
+    var options = {
+        valueNames: ["grade", "name", "nbLinks", "percentage", "lastDate"]
+      };
+      
+    var sourcesList = new List("sourcesList", options);
+    
+    /*
+    // This function is not accepted to sort Dates. To investigate.
+    function sortDate(a: Date,b: Date){
+        return new Date(b).getTime() - new Date(a).getTime();
+      };
+    sourcesList.sort('lastDate', { sortFunction: sortDate });
+    */
 
     if (loading) {
         return (<>
@@ -14,43 +28,38 @@ function AllSources() {
           </div>
         </>)
       }
-
+    
     return (
-    <section className="m-4 md:w-3/4 lg:w-2/3 md:mx-auto md:my-16">
+    <section className="m-4 w-min md:mx-auto md:my-16">
         <div className="shadow-md rounded p-5">
-            <table className="table-auto min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-100">
-                    <tr className="divide-x">
-                        <th className="p-2">Rang</th>
-                        <th>Source</th>
-                        <th>Nombre de liens</th>
-                        <th>Part de l'ensemble des liens</th>
-                        <th>Date de la dernière citation</th>
-                    </tr>
-                </thead>
-                <tbody className="odd:bg-white even:bg-slate-100 bg-white divide-y divide-gray-200">
+            <div id="sourcesList">
+                <input className="search border-2 rounded-full px-3 mr-2" placeholder="Recherche" />
+                <button className="sort bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-1 mx-2" data-sort="name" data-order="asc">Source</button>
+                <button className="sort bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-1 mx-2" data-sort="nbLinks">Liens</button>
+                <button className="sort bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-1 mx-2" data-sort="lastDate">Date</button>
+
+                <div className="mt-4 font-bold grid grid-flow-col auto-cols-min gap-4 p-1">
+                    <p className="w-11">Rang</p>
+                    <p className="w-72">Source</p>
+                    <p className="w-12">Liens</p>
+                    <p className="w-20">Part</p>
+                    <p className="w-32">Denière citation</p>
+                </div>
+
+                <ul className="list">
                     {data.labels.map(label => (
-                        <tr className="text-center border-b divide-x odd:bg-white even:bg-gray-50 hover:bg-gray-100"
-                            key={label+"-row"}>
-                            <td className="p-1" key={label+"-index-"+data.labels.indexOf(label)}>
-                                {data.labels.indexOf(label)+1}
-                            </td>
-                            <td key={label}>
-                                {label}
-                            </td>
-                            <td key={label+"-totalLinks-"+data.totalLinks[data.labels.indexOf(label)]}>
-                                {data.totalLinks[data.labels.indexOf(label)]}
-                            </td>
-                            <td key={label+"-percentage-"+data.percentages[data.labels.indexOf(label)]}>
-                                {data.percentages[data.labels.indexOf(label)]} %
-                            </td>
-                            <td key={label +"-lastDate-"+ new Date(data.lastDates[data.labels.indexOf(label)]).toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'})}>
-                                {new Date(data.lastDates[data.labels.indexOf(label)]).toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'})}
-                            </td>
-                        </tr>
+                    <li>
+                        <div className="grid grid-flow-col auto-cols-min gap-4 border rounded mb-1 p-1">
+                            <p className="grade w-11">{data.labels.indexOf(label)+1}</p>
+                            <p className="name w-72">{label}</p>
+                            <p className="nbLinks w-12">{data.totalLinks[data.labels.indexOf(label)]}</p>
+                            <p className="percentage w-20">{data.percentages[data.labels.indexOf(label)]} %</p>
+                            <p className="lastDate w-28">{new Date(data.lastDates[data.labels.indexOf(label)]).toLocaleDateString('fr-FR')}</p>
+                        </div>
+                    </li>
                     ))}
-                </tbody>
-            </table>
+                </ul>
+            </div>
         </div>
     </section>
     );
