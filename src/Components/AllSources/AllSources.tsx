@@ -48,13 +48,23 @@ function AllSources() {
 
                 <ul className="list">
                     {data.labels.map(label => (
-                    <li>
-                        <div className="grid grid-flow-col auto-cols-min gap-4 border rounded mb-1 p-1">
-                            <p className="grade w-11">{data.labels.indexOf(label)+1}</p>
-                            <p className="name w-72">{label}</p>
-                            <p className="nbLinks w-12">{data.totalLinks[data.labels.indexOf(label)]}</p>
-                            <p className="percentage w-20">{data.percentages[data.labels.indexOf(label)]} %</p>
-                            <p className="lastDate w-28">{new Date(data.lastDates[data.labels.indexOf(label)]).toLocaleDateString('fr-FR')}</p>
+                    <li key={label+"-li"}>
+                        <div className="grid grid-flow-col auto-cols-min gap-4 border rounded mb-1 p-1" key={label+"-div"}>
+                            <p className="grade w-11" key={label+"-index-"+data.labels.indexOf(label)}>
+                                {data.labels.indexOf(label)+1}
+                            </p>
+                            <p className="name w-72" key={label+"-name"}>
+                                {label}
+                            </p>
+                            <p className="nbLinks w-12" key={label+"-totalLinks-"+data.totalLinks[data.labels.indexOf(label)]}>
+                                {data.totalLinks[data.labels.indexOf(label)]}
+                            </p>
+                            <p className="percentage w-20" key={label+"-percentage-"+data.percentages[data.labels.indexOf(label)]}>
+                                {data.percentages[data.labels.indexOf(label)]} %
+                            </p>
+                            <p className="lastDate w-28" key={label +"-lastDate-"+ new Date(data.lastDates[data.labels.indexOf(label)]).toLocaleDateString('fr-FR')}>
+                                {new Date(data.lastDates[data.labels.indexOf(label)]).toLocaleDateString('fr-FR')}
+                            </p>
                         </div>
                     </li>
                     ))}
