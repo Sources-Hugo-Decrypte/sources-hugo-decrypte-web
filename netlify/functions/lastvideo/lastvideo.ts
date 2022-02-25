@@ -60,7 +60,7 @@ export const handler: Handler = async (event, context) => {
   console.log(lastVideoDataRes);
 
   lastVideoData.thumbnail = lastVideoDataRes[0].video_img
-  lastVideoData.name = lastVideoDataRes[0].video_name
+  lastVideoData.name = lastVideoDataRes[0].video_name.replace(/\\u0027/g, "'")
   lastVideoData.date = lastVideoDataRes[0].video_date
   lastVideoData.link = "https://www.youtube.com/watch?v="+lastVideoDataRes[0].video_id
   lastVideoData.totalSources = lastVideoDataRes[0].number_sources
