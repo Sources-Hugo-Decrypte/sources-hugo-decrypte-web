@@ -15,12 +15,10 @@ function LastVideo(data: LastVideoData) {
                 </p>
                 <p className="font-bold mb-3 text-sm text-gray-700">
                     {data.totalSources === 0
-                        ? (<label>Aucune source citée</label>)
+                        ? ('Aucune source citée')
                         : (
-                            <label>
-                                {data.totalSources} Source{data.totalSources > 1 && (<label>s</label>)}
-                                <label> (</label>{data.totalLinks} lien{data.totalLinks > 1 && (<label>s</label>)}<label>)</label>
-                            </label>
+                            `${data.totalSources} Source${data.totalSources > 1 && ('s')}
+                            (${data.totalLinks} lien${data.totalLinks > 1 && ('s')})`
                         )
                     }
                 </p>
