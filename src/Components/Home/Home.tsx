@@ -4,6 +4,7 @@ import Overview from '../Overview/Overview';
 import HomeData from "../../Data/HomeData";
 import SectionTitle from "../Common/SectionTitle";
 import useFetch from "../../Utils/useFetch";
+import LastVideo from "../LastVideo/LastVideo";
 
 function Home() {
   const [homeData, loading] = useFetch<HomeData>('/.netlify/functions/home')
@@ -21,6 +22,7 @@ function Home() {
     <>
       <Remark />
       <Overview {...homeData.overview} />
+      <LastVideo />
       <Top10 {...homeData.top10} />
     </>
   );
