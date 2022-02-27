@@ -24,7 +24,7 @@ function LastVideo(data: LastVideoData) {
                 </p>
                 <div className="flex flex-wrap justify-evenly md:justify-center lg:justify-start gap-x-1">
                     {data.sources.url.map(link => (
-                        <a href={link} rel="external nofollow" title={link} key={link} className="rounded-full bg-gray-200 px-2 py-1 my-1 text-xs">
+                        <a href={link} rel="external nofollow noreferrer" target="_blank" title={link} key={link} className="rounded-full bg-gray-200 px-2 py-1 my-1 text-xs">
                             {data.sources.common_name[data.sources.url.indexOf(link)]}
                         </a>
                     ))}
