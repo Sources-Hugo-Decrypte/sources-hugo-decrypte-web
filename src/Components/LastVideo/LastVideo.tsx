@@ -6,14 +6,14 @@ function LastVideo(data: LastVideoData) {
         <SectionTitle title="Dernière vidéo" />
         <div className="shadow-md rounded px-3 text-center lg:p-5 lg:grid lg:grid-cols-4 lg:gap-4">
             <img alt="thumbnail" src={data.thumbnail} className="m-auto rounded" />
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 lg:text-left">
                 <a href={data.link} rel="external nofollow" title="Ouvrir dans youtube" className="inline-block my-4 text-sm text-gray-700 underline">
                     {data.name}
                 </a>
-                <p className="mb-3 text-sm text-gray-700 lg:text-left">
+                <p className="mb-3 text-sm text-gray-700">
                     Publiée le {new Date(data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
                 </p>
-                <p className="font-bold mb-3 text-sm text-gray-700 lg:text-left">
+                <p className="font-bold mb-3 text-sm text-gray-700">
                     {data.totalSources === 0
                         ? ('Aucune source citée')
                         : (
