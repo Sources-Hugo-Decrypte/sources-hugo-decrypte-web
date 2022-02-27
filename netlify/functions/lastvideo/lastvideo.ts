@@ -4,7 +4,7 @@ const postgres = require('postgres');
 
 export const handler: Handler = async (event, context) => {
 
-  const sql = postgres(process.env.HDS_DATABASE_CON, {max: 1, idle_timeout: 2})
+  const sql = postgres(process.env.HDS_DATABASE_CON, { max: 1, idle_timeout: 2 })
 
   const lastVideoData: LastVideoData = {
     thumbnail: "",
@@ -13,10 +13,7 @@ export const handler: Handler = async (event, context) => {
     link: "",
     totalSources: 0,
     totalLinks: 0,
-    sources: {
-        common_name: new Array<string>(),
-        url: new Array<string>()
-    }
+    sources: new Array<{ common_name: string, url: string }>()
   }
 
   const lastVideoDataRes = await sql`SELECT * FROM
@@ -54,22 +51,19 @@ export const handler: Handler = async (event, context) => {
                                                 WHERE blacklist_url=url_short
                                                 OR blacklist_url=url_full)
                                     ) table_nb_sources;`
-  
-  sql.end()
 
-  console.log(lastVideoDataRes);
+  sql.end()
 
   lastVideoData.thumbnail = lastVideoDataRes[0].video_img
   lastVideoData.name = lastVideoDataRes[0].video_name.replace(/\\u0027/g, "'")
   lastVideoData.date = lastVideoDataRes[0].video_date
-  lastVideoData.link = "https://www.youtube.com/watch?v="+lastVideoDataRes[0].video_id
+  lastVideoData.link = "https://www.youtube.com/watch?v=" + lastVideoDataRes[0].video_id
   lastVideoData.totalSources = lastVideoDataRes[0].number_sources
   lastVideoData.totalLinks = lastVideoDataRes.length
 
   lastVideoDataRes.forEach(row => {
-    lastVideoData.sources.common_name.push(row.register_common_name)
-    lastVideoData.sources.url.push(row.url_full)
- });
+    lastVideoData.sources.push({ common_name: row.register_common_name, url: row.url_full })
+  });
 
   return {
     statusCode: 200,

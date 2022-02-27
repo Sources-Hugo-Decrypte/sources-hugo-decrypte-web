@@ -5,10 +5,7 @@ type LastVideoData = {
     link: string,
     totalSources: number,
     totalLinks: number,
-    sources: {
-        common_name: string[],
-        url: string[]
-    }
+    sources: { common_name: string, url: string }[]
 }
 
 export default LastVideoData
