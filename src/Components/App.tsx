@@ -4,14 +4,12 @@ import Top10 from './Top10/Top10';
 import Footer from './Footer/Footer'
 import Overview from './Overview/Overview';
 import HomeData from "../Data/HomeData";
-import LastVideoData from "../Data/LastVideoData";
 import SectionTitle from "./Common/SectionTitle";
 import useFetch from "../Utils/useFetch";
 import LastVideo from './LastVideo/LastVideo';
 
 function App() {
   const [homeData, loading] = useFetch<HomeData>('/.netlify/functions/home')
-  const [lastVideoData] = useFetch<LastVideoData>('/.netlify/functions/lastvideo')
 
   if (loading) {
     return (<>
@@ -29,7 +27,7 @@ function App() {
       <Header />
       <Remark />
       <Overview {...homeData.overview} />
-      <LastVideo {...lastVideoData} />
+      <LastVideo />
       <Top10 {...homeData.top10} />
       <Footer />
     </>
