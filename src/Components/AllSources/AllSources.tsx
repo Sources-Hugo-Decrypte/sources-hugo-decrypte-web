@@ -1,6 +1,4 @@
-import AllSourcesData from '../../Data/AllSourcesData';
-import useFetch from "../../Utils/useFetch";
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import SectionTitle from "../Common/SectionTitle";
 import "./allsources.css";
 
