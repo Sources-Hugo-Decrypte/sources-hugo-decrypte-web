@@ -5,7 +5,7 @@ import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
-import AllSources from './Components/AllSources/AllSources';
+import AllSources from './Components/AllSources/AllSources'; 
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 

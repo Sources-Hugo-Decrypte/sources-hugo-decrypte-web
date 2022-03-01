@@ -6,12 +6,7 @@ export const handler: Handler = async (event, context) => {
 
   const sql = postgres(process.env.HDS_DATABASE_CON, {max: 1, idle_timeout: 2})
   
-  const allSourcesData: AllSourcesData = {
-    labels: new Array<string>(),
-    totalLinks: new Array<number>(),
-    percentages: new Array<number>(),
-    lastDates: new Array<Date>()
-  }
+  const allSourcesData: AllSourcesData = null
 
   const allSourcesDataRes = await sql`SELECT * FROM
                                     (SELECT COUNT(*) AS "total_links"
@@ -34,11 +29,16 @@ export const handler: Handler = async (event, context) => {
   
   sql.end()
 
-  allSourcesDataRes.forEach(row => {
-    allSourcesData.labels.push(row.label)
-    allSourcesData.totalLinks.push(Number(row.number_urls))
-    allSourcesData.percentages.push(Number((row.number_urls / row.total_links * 100).toFixed(2)))
-    allSourcesData.lastDates.push(row.most_recent)
+  allSourcesDataRes.forEach((row, index) => {
+    allSourcesData.push(
+      {
+        grade: index,
+        name: row.label,
+        totalLinks: Number(row.number_urls),
+        percentage: Number((row.number_urls / row.total_links * 100).toFixed(2)),
+        lastDate: row.most_recent
+      }
+    )
   });
 
   return {

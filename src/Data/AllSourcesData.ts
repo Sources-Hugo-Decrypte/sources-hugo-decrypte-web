@@ -1,8 +1,9 @@
-type AllSourcesData = {
-    labels: string[],
-    totalLinks: number[],
-    percentages: number[],
-    lastDates: Date[]
-};
+type AllSourcesData = Array<{
+    grade: number,
+    name: string,
+    totalLinks: number,
+    percentage: number,
+    lastDate: Date
+}>;
 
 export default AllSourcesData;
