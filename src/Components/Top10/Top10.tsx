@@ -23,7 +23,11 @@ ChartJS.register(
 
 function Top10() {
 
-  const [top10Data, loading] = useFetch<Top10Data>('/.netlify/functions/top10');
+  const [top10Data, loading, error] = useFetch<Top10Data>('/.netlify/functions/top10');
+
+  if (error) {
+    console.error(error)
+  }
 
   const top10DataWaiting: Top10Data = {
     labels: Array(10).fill("chargement"),

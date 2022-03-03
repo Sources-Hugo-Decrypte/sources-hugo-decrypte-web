@@ -3,7 +3,11 @@ import SectionTitle from "../Common/SectionTitle";
 import useFetch from "../../Utils/useFetch";
 
 function LastVideo() {
-    const [videoData, loading] = useFetch<LastVideoData>('/.netlify/functions/lastvideo')
+    const [videoData, loading, error] = useFetch<LastVideoData>('/.netlify/functions/lastvideo')
+
+    if (error) {
+        console.error(error)
+      }   
 
     if (loading) {
         return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">

@@ -18,8 +18,12 @@ function OverviewItem({ value, title, description, icon, loading = false }: { va
 }
 
 function Overview() {
-    const [overviewData, loading] = useFetch<OverviewData>('/.netlify/functions/overview');
+    const [overviewData, loading, error] = useFetch<OverviewData>('/.netlify/functions/overview');
 
+    if (error) {
+        console.error(error)
+      }
+    
     return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
         <SectionTitle title="En bref" />
         <div className="shadow-md rounded p-5 flex flex-col md:flex-row md:justify-around gap-10">
