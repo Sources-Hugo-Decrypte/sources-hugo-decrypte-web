@@ -6,11 +6,11 @@ function LastVideo() {
     const [videoData, loading] = useFetch<LastVideoData>('/.netlify/functions/lastvideo')
 
     if (loading) {
-        return <section className="m-4 lg:w-2/3 lg:mx-auto lg:my-16">
+        return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
             <SectionTitle title="Dernière vidéo" />
             <div className="animate-pulse shadow-md rounded px-3 text-center lg:p-5 lg:grid lg:grid-cols-4 lg:gap-4">
-                <div className="rounded m-auto bg-gray-300 w-full h-24"></div>
-                <div className="lg:col-span-3 lg:text-left space-y-6">
+                <div className="rounded m-auto bg-gray-300 w-full h-24 mb-3 lg:mb-0"></div>
+                <div className="lg:col-span-3 lg:text-left space-y-6 pb-3 lg:pb-0">
                     <div className="h-2 bg-gray-300 rounded"></div>
                     <div className="h-2 w-16 bg-gray-300 rounded"></div>
                     <div className="h-2 w-24 bg-gray-300 rounded"></div>
@@ -19,7 +19,7 @@ function LastVideo() {
         </section>;
     }
 
-    return <section className="m-4 lg:w-2/3 lg:mx-auto lg:my-16">
+    return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
         <SectionTitle title="Dernière vidéo" />
         <div className="shadow-md rounded px-3 text-center lg:p-5 lg:grid lg:grid-cols-4 lg:gap-4">
             <img alt="thumbnail" src={videoData.thumbnail} className="m-auto rounded" />
