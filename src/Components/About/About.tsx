@@ -17,16 +17,16 @@ function About() {
       </p>
       <div className="shadow-md rounded p-2 md:p-5 my-8 lg:grid grid-cols-2 gap-4">
         <p className="mb-4 md:mb-0 col-span-2 font-bold text-lg">Qui sommes-nous ?</p>
-        <div className="p-2 md:p-5 flex flex-col items-center">
+        <div className="p-4 md:p-5 flex flex-col items-center">
           <img className="rounded-full w-52 md:w-60" alt="Thomas" src={picThomas} />
           <p className="text-center my-4">Thomas Couacault</p>
-          <p className="text-justify my-2">Logoden biniou degemer mat an penn ar bed diwezh, Mur Doue kelenner war gazek aotre kerzhout Roazhon Park koulz, echuiñ Kemperle gar mab kurun klask pelec’h.</p>
+          <p className="text-justify my-2">Ingénieur en développement logiciel C# (.NET), je suis passionné par l'informatique et les nouvelles technologies.</p>
           <div className="flex md:items-center">
           <a className="underline mb-7 md:mb-0" href="https://www.linkedin.com/in/thomas-couacault/" rel="external nofollow">Linkedin</a>
             {extLinkIncon}
           </div>
         </div>
-        <div className="p-2 md:p-5 flex flex-col items-center">
+        <div className="p-4 md:p-5 flex flex-col items-center">
           <img className="rounded-full w-52 md:w-60" alt="Youen" src={picYouen} />
           <p className="text-center my-4">Youën Ruaux</p>
           <p className="text-justify my-2">Logoden biniou degemer mat an penn ar bed diwezh, Mur Doue kelenner war gazek aotre kerzhout Roazhon Park koulz, echuiñ Kemperle gar mab kurun klask pelec’h.</p>
