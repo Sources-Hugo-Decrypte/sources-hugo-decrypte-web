@@ -9,7 +9,6 @@ function OverviewItem({ value, title, description, icon, loading = false }: { va
         <div className="flex md:items-center">
             {loading ? <div className="animate-pulse h-2 w-8 mr-2 my-auto bg-gray-300 rounded"></div>
                 : <h3 className="font-bold text-3xl mr-1">{value}</h3>}
-            <h3 className="font-bold text-3xl mr-1">{value}</h3>
             {icon}
         </div>
         <h5 className="font-bold my-2">{title}</h5>
