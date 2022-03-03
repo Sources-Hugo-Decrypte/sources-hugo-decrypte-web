@@ -6,6 +6,7 @@ import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import AllSources from './Components/AllSources/AllSources';
+import AvailableSoon from './Components/AvailableSoon/AvailableSoon';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -17,6 +18,7 @@ ReactDOM.render(
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/allsources" element={<AllSources />} />
+        <Route path="/search" element={<AvailableSoon />} />
       </Routes>
       <Footer />
     </BrowserRouter>
