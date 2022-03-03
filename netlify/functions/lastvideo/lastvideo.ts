@@ -16,6 +16,7 @@ export const handler: Handler = async (event, context) => {
     sources: new Array<{ common_name: string, url: string }>()
   }
 
+  const hrstart = process.hrtime()
   const lastVideoDataRes = await sql`SELECT * FROM
                                     (SELECT video_id, video_name, video_date, video_img FROM video_table
                                     WHERE video_name IS NOT NULL
@@ -53,6 +54,9 @@ export const handler: Handler = async (event, context) => {
                                     ) table_nb_sources;`
 
   sql.end()
+
+  const hrend = process.hrtime(hrstart)
+  console.info('Execution time for Last Video (hr): %ds %dms', hrend[0], hrend[1] / 1000000)
 
   lastVideoData.thumbnail = lastVideoDataRes[0].video_img
   lastVideoData.name = lastVideoDataRes[0].video_name.replace(/\\u0027/g, "'")

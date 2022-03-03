@@ -4,14 +4,15 @@ const postgres = require('postgres');
 
 export const handler: Handler = async (event, context) => {
 
-  const sql = postgres(process.env.HDS_DATABASE_CON, {max: 1, idle_timeout: 2})
+  const sql = postgres(process.env.HDS_DATABASE_CON, { max: 1, idle_timeout: 2 })
 
   const top10Data: Top10Data = {
-      labels: new Array<string>(),
-      totalLinks: new Array<number>(),
-      percentages: new Array<number>()
-    }
+    labels: new Array<string>(),
+    totalLinks: new Array<number>(),
+    percentages: new Array<number>()
+  }
 
+  const hrstart = process.hrtime()
   const top10Res = await sql`SELECT * FROM
                             (SELECT COUNT(*) AS "total_links"
                             FROM url_table
@@ -30,8 +31,11 @@ export const handler: Handler = async (event, context) => {
                             GROUP BY register_common_name
                             ORDER BY number_urls
                             DESC LIMIT 10) table_data;`
-  
+
   sql.end()
+  const hrend = process.hrtime(hrstart)
+  console.info('Execution time for Top10 (hr): %ds %dms', hrend[0], hrend[1] / 1000000)
+
 
   top10Res.forEach(row => {
     top10Data.labels.push(row.label)
