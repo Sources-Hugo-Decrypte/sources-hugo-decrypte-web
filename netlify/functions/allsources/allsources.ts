@@ -33,7 +33,7 @@ export const handler: Handler = async (event, context) => {
   allSourcesDataRes.forEach((row, index) => {
     allSourcesData.push(
       {
-        grade: index,
+        grade: index+1,
         name: row.label,
         totalLinks: Number(row.number_urls),
         percentage: Number((row.number_urls / row.total_links * 100).toFixed(2)),
