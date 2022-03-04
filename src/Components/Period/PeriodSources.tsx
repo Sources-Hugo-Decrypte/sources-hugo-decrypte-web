@@ -25,7 +25,7 @@ import {
   );
 
   function Header() {
-    return <p className="ml-4 mb-4 text-sm font-bold text-gray-700">Nombre de liens et de sources par vidéo :</p>
+    return <p className="ml-4 mb-4 text-sm font-bold text-gray-700">Nombre de sources par vidéo :</p>
   }
   
   function PeriodSources() {
