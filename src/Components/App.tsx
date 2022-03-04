@@ -5,13 +5,11 @@ import Period from './Period/Period';
 import Footer from './Footer/Footer';
 import Overview from './Overview/Overview';
 import HomeData from "../Data/HomeData";
-import PeriodData from "../Data/PeriodData";
 import SectionTitle from "./Common/SectionTitle";
 import useFetch from "../Utils/useFetch";
 
 function App() {
   const [homeData, loading] = useFetch<HomeData>('/.netlify/functions/home')
-  const [periodData, loading2] = useFetch<PeriodData>('/.netlify/functions/period')
 
   if (loading) {
     return (<>
@@ -30,7 +28,7 @@ function App() {
       <Remark />
       <Overview {...homeData.overview} />
       <Top10 {...homeData.top10} />
-      <Period {...periodData} />
+      <Period />
       <Footer />
     </>
   );
