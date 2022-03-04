@@ -110,32 +110,17 @@ import {
       labels: periodSourcesData.nbSources.date,
       datasets: [
         {
-          label: 'Nombre de liens',
-          data: periodSourcesData.nbLinks.totalLinks,
-          borderColor: '#ff5174',// the ref in the color palette is '#fb4da0' but it looks too pinky
+          label: 'Nombre de sources',
+          data: periodSourcesData.nbSources.totalSources,
+          borderColor: '#ff5174',
           backgroundColor: '#ff5174',
         },
         {
-          label: 'Nombre de sources',
-          data: periodSourcesData.nbSources.totalSources,
-          borderColor: '#182ef7',
-          backgroundColor: '#182ef7',
-        },
-        {
-          label: 'Moyenne des liens',
-          data: avgLinksDataset,
-          borderColor: '#ff91a7',
-          backgroundColor: '#ff91a7',
-          pointRadius: 0,
-          borderDash: [15,3,3,3]
-        },
-        {
-          label: 'Moyenne des sources',
+          label: 'Moyenne',
           data: avgSourcesDataset,
           borderColor: '#9da6fb',
           backgroundColor: '#9da6fb',
-          pointRadius: 0,
-          borderDash: [15,3,3,3]
+          pointRadius: 0
         }
       ],
     };
