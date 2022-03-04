@@ -1,42 +1,12 @@
 import { useState, useMemo } from 'react';
+import AllSourcesData from '../../Data/AllSourcesData';
+import useFetch from '../../Utils/useFetch';
 import SectionTitle from "../Common/SectionTitle";
 import "./allsources.css";
 
 function AllSources() {    
 
-    //const [fetchedData, loading] = useFetch<AllSourcesData>('/.netlify/functions/allsources');
-
-    const loading = false;
-    const fetchedData = [
-        {
-            grade: 1,
-            name: "lemonde.fr",
-            totalLinks: 992,
-            percentage: 13.5,
-            lastDate: new Date("02/25/2022")
-        },
-        {
-            grade: 2,
-            name: "francetvinfo.fr",
-            totalLinks: 842,
-            percentage: 11.46,
-            lastDate: new Date("02/25/2022")
-        },
-        {
-            grade: 3,
-            name: "lefigaro.fr",
-            totalLinks: 368,
-            percentage: 5.01,
-            lastDate: new Date("02/23/2022")
-        },
-        {
-            grade: 4,
-            name: "20minutes.fr",
-            totalLinks: 352,
-            percentage: 4.79,
-            lastDate: new Date("02/25/2022")
-        },
-    ];
+    let [fetchedData, loading] = useFetch<AllSourcesData>('/.netlify/functions/allsources');
 
     const listLabels = {
         grade: "Rang",
@@ -46,10 +16,8 @@ function AllSources() {
         lastDate: "Date"
     };
 
-    console.log(fetchedData);
-
      // ---------------- Sorting ---------------- //
-    const [sourcesData, setSourcesData] = useState(fetchedData);
+    const [sourcesData, setSourcesData] = useState<AllSourcesData>([]);
     const sortConfigDefault = { key: 'grade', direction: 'asc' };
     const [sortConfig, setSortConfig] = useState(sortConfigDefault);
 
@@ -138,10 +106,13 @@ function AllSources() {
     return (
     <section className="m-4 w-min md:mx-auto md:my-16">
         <SectionTitle title="Toutes les sources" />
-        <p className="shadow-md rounded m-4 p-4 md:mb-8 md:mx-auto">
-            Le tableau ci-dessous renseigne l'ensemble des sources utilisées au moins une fois. Le nombre de liens correspond au nombre d'utilisations de la source.
-            <br /><br />Plus la source est utilisée, plus elle est en haut du classement. En cas d'égalité, c'est la source qui a été utilisée le plus récemment qui est considérée en premier. La date de la dernière utilisation est indiquée pour chaque source.
-        </p>
+        <div className="shadow-md rounded m-4 p-4 md:mb-8 md:mx-auto">
+            <p>
+                Le tableau ci-dessous renseigne l'ensemble des sources utilisées au moins une fois. Le nombre de liens correspond au nombre d'utilisations de la source.
+                <br /><br />Plus la source est utilisée, plus elle est en haut du classement. En cas d'égalité, c'est la source qui a été utilisée le plus récemment qui est considérée en premier. La date de la dernière utilisation est indiquée pour chaque source.
+            </p>
+            <button className="border-2 bg-gray-100 hover:bg-gray-200 rounded-full px-4 mt-8" onClick={() => setSourcesData(fetchedData)}>Charger les données</button>
+        </div>
         <div className="shadow-md rounded m-4 p-4 md:my-8 md:mx-auto max-w-xs md:max-w-min">
             <div>
                 <div className="grid grid-flow-row md:grid-cols-2 auto-cols-min gap-4 p-1">
