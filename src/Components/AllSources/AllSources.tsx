@@ -4,6 +4,18 @@ import useFetch from '../../Utils/useFetch';
 import SectionTitle from "../Common/SectionTitle";
 import "./allsources.css";
 
+function Header() {
+    return <div>
+        <SectionTitle title="Toutes les sources" />
+        <div className="shadow-md rounded m-4 p-4 md:mb-8 md:mx-auto">
+            <p>
+                Le tableau ci-dessous renseigne l'ensemble des sources utilisées au moins une fois. Le nombre de liens correspond au nombre d'utilisations de la source.
+                <br /><br />Plus la source est utilisée, plus elle est en haut du classement. En cas d'égalité, c'est la source qui a été utilisée le plus récemment qui est considérée en premier. La date de la dernière utilisation est indiquée pour chaque source.
+            </p>
+        </div>
+    </div>;
+}
+
 function AllSources() {    
 
     let [fetchedData, loading] = useFetch<AllSourcesData>('/.netlify/functions/allsources');
@@ -21,8 +33,7 @@ function AllSources() {
     const sortConfigDefault = { key: 'grade', direction: 'asc' };
     const [sortConfig, setSortConfig] = useState(sortConfigDefault);
 
-    useMemo(() => {
-        const sortArray = () => {
+    const sortArray = () => {
         // Default, sorted by grade (i.e by number of links) :
         var sorted = [...sourcesData].sort((a, b) => {
             if (a['grade'] < b['grade']) {
@@ -58,8 +69,10 @@ function AllSources() {
             });
         }
         setSourcesData(sorted);
-        };
-        sortArray();
+    }
+
+    useMemo(() => {
+        sortArray()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sortConfig.key, sortConfig.direction]);
 
@@ -67,15 +80,15 @@ function AllSources() {
     const filter = (e: { target: { value: any; }; }) => {
         const keyword = e.target.value;
         if (keyword !== '') {
-        const results = fetchedData.filter((source) => {
-            return source.name.toLowerCase().includes(keyword.toLowerCase());
-            // Use the toLowerCase() method to make it case-insensitive
-        });
-        setSourcesData(results);
+            const results = fetchedData.filter((source) => {
+                return source.name.toLowerCase().includes(keyword.toLowerCase());
+                // Use the toLowerCase() method to make it case-insensitive
+            });
+            setSourcesData(results);
         } else {
-        setSourcesData(fetchedData);
-        // If the text field is empty, show all users
+            setSourcesData(fetchedData); // If the text field is empty, show all data
         }
+        //sortArray(); // -> keep sorting choice when displaying results. ISSUE: so far, it prevents to do any searching
     };
 
     // ---------------- For sorting in both ways ---------------- //
@@ -96,34 +109,26 @@ function AllSources() {
     };
     
     if (loading) {
-        return (<>
-          <div className="h-screen text-center my-20">
-            <SectionTitle title="Chargement..." />
-          </div>
-        </>)
+        return (<section className="m-4 md:w-2/3 md:mx-auto md:my-16">
+            <Header />
+            <div className="mx-auto my-4 md:w-min text-center">
+                <SectionTitle title="Chargement..." />
+            </div>
+          </section>)
     }
 
     return (
-    <section className="m-4 w-min md:mx-auto md:my-16">
-        <SectionTitle title="Toutes les sources" />
-        <div className="shadow-md rounded m-4 p-4 md:mb-8 md:mx-auto">
-            <p>
-                Le tableau ci-dessous renseigne l'ensemble des sources utilisées au moins une fois. Le nombre de liens correspond au nombre d'utilisations de la source.
-                <br /><br />Plus la source est utilisée, plus elle est en haut du classement. En cas d'égalité, c'est la source qui a été utilisée le plus récemment qui est considérée en premier. La date de la dernière utilisation est indiquée pour chaque source.
-            </p>
-            <button className="border-2 bg-gray-100 hover:bg-gray-200 rounded-full px-4 mt-8" onClick={() => setSourcesData(fetchedData)}>Charger les données</button>
-        </div>
-        <div className="shadow-md rounded m-4 p-4 md:my-8 md:mx-auto max-w-xs md:max-w-min">
+    <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
+        <Header />
+        <div className="shadow-md rounded m-4 p-4 md:my-8 md:mx-auto">
+        <button className="border-2 bg-gray-100 hover:bg-gray-200 rounded-full w-52 px-4 ml-1 mb-4" onClick={() => setSourcesData(fetchedData)}>Charger les données</button>
             <div>
-                <div className="grid grid-flow-row md:grid-cols-2 auto-cols-min gap-4 p-1">
-                    <div>
-                        <input className="border-2 rounded-full px-3 md:mr-2" onChange={filter} type="text" placeholder="Recherche" />
-                    </div>
-                    <div>
-                        <button className={getClassNamesFor('grade') + " bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-1 mr-3 mb-3"} onClick={() => requestSort('grade')}>Rang</button>
-                        <button className={getClassNamesFor('name') + " bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-1 mr-3 mb-3"} onClick={() => requestSort('name')}>A-Z</button>
-                        <button className={getClassNamesFor('lastDate') + " bg-gray-100 hover:bg-gray-200 rounded-full px-4 py-1 mr-3 mb-3"} onClick={() => requestSort('lastDate')}>Date</button>
-                    </div>
+                <div className="grid grid-flow-row md:grid-flow-col auto-cols-min gap-2 p-1">
+                    <input className="border-2 rounded-full h-max px-3 mb-2 md:mr-4" onChange={filter} type="text" placeholder="Recherche" />
+                    <button className={getClassNamesFor('grade') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max w-max px-4 py-1"} onClick={() => requestSort('grade')}>Rang</button>
+                    <button className={getClassNamesFor('name') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max w-max px-4 py-1"} onClick={() => requestSort('name')}>A-Z</button>
+                    <button className={getClassNamesFor('lastDate') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max w-max px-4 py-1"} onClick={() => requestSort('lastDate')}>Date</button>
+                    
                 </div>
 
                 <div className="invisible md:visible font-bold grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 max-h-0 md:max-h-min p-1">
@@ -139,33 +144,38 @@ function AllSources() {
                         sourcesData.map(source => (
                         <li key={source.name+"-li"}>
                             <div className="grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 border rounded mb-1 p-1" key={source.name+"-div"}>
-                                <div className="grid grid-flow-col auto-cols-min">
-                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.grade}    : </p>
-                                    <p className="w-11" key={source.name+"-grade-"+source.grade}>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.grade}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <p className="w-max md:w-11" key={source.name+"-grade-"+source.grade}>
                                         {source.grade}
                                     </p>
                                 </div>
-                                <div className="grid grid-flow-col auto-cols-min">
-                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.name} : </p>
-                                    <p className="w-72" key={source.name+"-name"}>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.name}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <p className="w-max md:w-72" key={source.name+"-name"}>
                                         {source.name}
                                     </p>
                                 </div>
-                                <div className="grid grid-flow-col auto-cols-min">
-                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.totalLinks}    : </p>
-                                    <p className="w-12" key={source.name+"-totalLinks-"+source.totalLinks}>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.totalLinks}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <p className="w-max md:w-12" key={source.name+"-totalLinks-"+source.totalLinks}>
                                         {source.totalLinks}
                                     </p>
                                 </div>
-                                <div className="grid grid-flow-col auto-cols-min">
-                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.percentage}      : </p>
-                                    <p className="w-20" key={source.name+"-percentage-"+source.percentage}>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.percentage}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <p className="w-max md:w-20 whitespace-pre" key={source.name+"-percentage-"+source.percentage}>
                                         {source.percentage} %
                                     </p>
                                 </div>
-                                <div className="grid grid-flow-col auto-cols-min">
-                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.lastDate}     : </p>
-                                    <p className="w-28" key={source.name+"-lastDate-"+source.lastDate}>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.lastDate}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <p className="w-max md:w-28" key={source.name+"-lastDate-"+source.lastDate}>
                                         {new Date(source.lastDate).toLocaleDateString('fr-FR')}
                                     </p>
                                 </div>
