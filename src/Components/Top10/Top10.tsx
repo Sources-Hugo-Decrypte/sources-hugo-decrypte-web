@@ -124,7 +124,7 @@ function Top10() {
 
   return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
     <Header />
-    <div className="h-80 md:h-80 m-1"><Bar options={options} data={barData} className="shadow-md rounded md:p-5"/></div>
+    <div className="h-80 md:h-80"><Bar options={options} data={barData} className="shadow-md rounded p-2 md:p-5"/></div>
   </section>;
 }
 
