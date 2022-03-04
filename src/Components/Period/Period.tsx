@@ -71,13 +71,13 @@ function Period() {
   }
 
   const barOptions = {
+    maintainAspectRatio : false,
     indexAxis: 'y' as const,
     elements: {
       bar: {
         borderWidth: 2,
       },
     },
-    responsive: true,
     plugins: {
       legend: {
         display: false,
@@ -104,7 +104,7 @@ function Period() {
   };
 
   const lineOptions = {
-    responsive: true,
+    maintainAspectRatio : false,
     plugins: {
       legend: {
         // Disable the posibility to unshow the first elment in the legend :
@@ -138,9 +138,9 @@ function Period() {
 
     <div className="shadow-md rounded md:p-5">
       <p className="mb-4 text-sm text-gray-700">Top 10 sur cette période :</p>
-      <Bar options={barOptions} data={barData} />
+      <div className="h-72 md:h-96"><Bar options={barOptions} data={barData} /></div>
       <p className="mb-4 text-sm text-gray-700">Nombre de sources par vidéo :</p>
-      <Line options={lineOptions} data={lineData} />
+      <div className="h-72 md:h-80"><Line options={lineOptions} data={lineData} /></div>
     </div>
   </section>;
 }
