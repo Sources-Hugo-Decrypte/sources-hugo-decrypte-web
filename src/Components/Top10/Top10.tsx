@@ -21,6 +21,15 @@ ChartJS.register(
   Legend
 );
 
+function Header() {
+  return <div>
+    <SectionTitle title="Top 10 des sources" />
+    <p className="mb-4 text-sm text-gray-700">
+      Ce graphique présente le nombre de liens cités par source depuis la premère video de la chaîne (le 20/12/2015). Pour voir l’ensemble des sources <a href="/allsources" className="underline">cliquez-ici</a>.
+    </p>
+    </div>;
+}
+
 function Top10() {
 
   const [top10Data, loading, error] = useFetch<Top10Data>('/.netlify/functions/top10');
@@ -55,7 +64,7 @@ function Top10() {
         borderWidth: 2,
       },
     },
-    responsive: true,
+    maintainAspectRatio : false,
     plugins: {
       legend: {
         display: false,
@@ -65,11 +74,8 @@ function Top10() {
 
   if (loading){
     return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
-            <SectionTitle title="Top 10 des sources" />
-            <p className="mb-4 text-sm text-gray-700">
-              Ce graphique présente le nombre de liens cités par source depuis la premère video de la chaîne (le 20/12/2015). Pour voir l’ensemble des sources <a href="/allsources" className="underline">cliquez-ici</a>.
-            </p>
-            <Bar options={optionsWaiting} data={barDataWaiting} className="animate-pulse shadow-md rounded md:p-5"/>
+            <Header />
+            <div className="h-80 md:h-80 m-1"><Bar options={optionsWaiting} data={barDataWaiting} className="animate-pulse shadow-md rounded md:p-5"/></div>
           </section>;
   }
 
@@ -93,7 +99,7 @@ function Top10() {
         borderWidth: 2,
       },
     },
-    responsive: true,
+    maintainAspectRatio : false,
     plugins: {
       legend: {
         display: false,
@@ -117,11 +123,8 @@ function Top10() {
   }
 
   return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
-    <SectionTitle title="Top 10 des sources" />
-    <p className="mb-4 text-sm text-gray-700">
-      Ce graphique présente le nombre de liens cités par source depuis la premère video de la chaîne (le 20/12/2015). Pour voir l’ensemble des sources <a href="/allsources" className="underline">cliquez-ici</a>.
-    </p>
-    <Bar options={options} data={barData} className="shadow-md rounded md:p-5"/>
+    <Header />
+    <div className="h-80 md:h-80 m-1"><Bar options={options} data={barData} className="shadow-md rounded md:p-5"/></div>
   </section>;
 }
 
