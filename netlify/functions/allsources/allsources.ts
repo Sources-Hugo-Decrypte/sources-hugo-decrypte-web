@@ -1,12 +1,13 @@
 import { Handler } from '@netlify/functions'
 import AllSourcesData from '../../../src/Data/AllSourcesData'
+import AllSourcesSingleData from '../../../src/Data/AllSourcesSingleData'
 const postgres = require('postgres');
 
 export const handler: Handler = async (event, context) => {
 
   const sql = postgres(process.env.HDS_DATABASE_CON, {max: 1, idle_timeout: 2})
   
-  const allSourcesData: AllSourcesData = null
+  const allSourcesData: AllSourcesData = new Array<AllSourcesSingleData>();
 
   const allSourcesDataRes = await sql`SELECT * FROM
                                     (SELECT COUNT(*) AS "total_links"
