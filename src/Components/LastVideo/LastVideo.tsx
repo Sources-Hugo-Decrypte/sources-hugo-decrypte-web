@@ -25,7 +25,7 @@ function LastVideo() {
 
     return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
         <SectionTitle title="Dernière vidéo" />
-        <div className="shadow-md rounded px-3 text-center lg:p-5 lg:grid lg:grid-cols-4 lg:gap-4">
+        <div className="shadow-md rounded px-3 text-center pb-2 lg:p-5 lg:grid lg:grid-cols-4 lg:gap-4">
             <img alt="thumbnail" src={videoData.thumbnail} className="m-auto rounded" />
             <div className="lg:col-span-3 lg:text-left">
                 <a href={videoData.link} rel="external nofollow" title="Ouvrir dans youtube" className="inline-block my-4 text-sm text-gray-700 underline">
