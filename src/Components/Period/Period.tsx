@@ -12,14 +12,9 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
 
-import { forwardRef, LegacyRef, useState } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-import { fr } from 'date-fns/locale'
-
 import SectionTitle from "../Common/SectionTitle";
 import PeriodData from "../../Data/PeriodData";
-import { ChartJSOrUndefined } from 'react-chartjs-2/dist/types';
+import useFetch from '../../Utils/useFetch';
 
 ChartJS.register(
   CategoryScale,
@@ -31,14 +26,43 @@ ChartJS.register(
   Legend
 );
 
-function Period(rawData: PeriodData) {
+function Period() {
+
+  const [periodData, loading] = useFetch<PeriodData>('/.netlify/functions/period');
+
+  const todayDate = new Date();
+  const oneMonthAgoDate = new Date();
+  oneMonthAgoDate.setDate(todayDate.getDate() - 30);
+
+  if(loading){
+    return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
+    <SectionTitle title="Le mois passé" />
+    <p className="mb-4 text-sm text-gray-700">
+      Les graphiques suivants présentent les sources utilisées au cours des 30 derniers jours (du {oneMonthAgoDate.toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'})} au {todayDate.toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'})}).
+    </p>
+  </section>;
+  }
+
+  // moving average of sources per video :
+  const avgDataset = new Array<number>();
+  let NumElements = 5;  // number of elements to consider to compute the average
+  for(let index = 0 ; index < periodData.nbSources.totalSources.length ; index++){
+    let avgNb = 0;
+    let N=NumElements;
+    if(index+1<(NumElements)){N=index+1}
+    for (let i = index ; index-i < N ; i--){
+      avgNb += periodData.nbSources.totalSources[i];
+    }
+    avgNb /= N;
+    avgDataset.push(avgNb)
+  }
 
   const barData = {
-    labels: rawData.top10.labels,
+    labels: periodData.top10.labels,
     datasets: [
       {
         label: 'Nombre de liens',
-        data: rawData.top10.labels.map((_label, index) => rawData.top10.totalLinks[index]),
+        data: periodData.top10.labels.map((_label, index) => periodData.top10.totalLinks[index]),
         borderColor: '#4e5ff9',
         borderRadius: 4,
         backgroundColor: '#9da6fb',
@@ -62,13 +86,19 @@ function Period(rawData: PeriodData) {
   }
 
   const lineData = {
-    labels: rawData.nbSources.date,
+    labels: periodData.nbSources.date,
     datasets: [
       {
         label: 'Nombre de sources',
-        data: rawData.nbSources.totalSources,
+        data: periodData.nbSources.totalSources,
         borderColor: '#ff6384',/* the ref in the color palette is '#fb4da0' but it looks too pinky*/
         backgroundColor: '#ff6384',
+      },
+      {
+        label: 'Moyenne',
+        data: avgDataset,
+        borderColor: '#9da6fb',
+        backgroundColor: '#9da6fb',
       }
     ],
   };
@@ -77,69 +107,40 @@ function Period(rawData: PeriodData) {
     responsive: true,
     plugins: {
       legend: {
-        display: false
-      }
+        // Disable the posibility to unshow the first elment in the legend :
+        onClick: (evt: any, legendItem: { datasetIndex: any; }, legend: { chart: any; }) => {
+          const index = legendItem.datasetIndex;
+          const ci = legend.chart;
+
+          if(index !== 0){  // no action for first element of legend
+            if(ci.data.datasets[index].hidden === false){
+              ci.data.datasets[index].hidden = true;
+              ci.show(index);
+            }
+            else{
+              ci.data.datasets[index].hidden = false;
+              ci.hide(index);
+            }
+          }
+        }
+      },
     },
     scales: {
       y: {min: 0}
     },
   };
 
-  var barReference: ChartJSOrUndefined<"bar", number[], string> | null;
-  var lineReference: ChartJSOrUndefined<"line", number[], string> | null;
-  
-  function afficherPeriode() {
-    if(barData.labels[0] === "lemonde.fr"){barData.labels[0] = "lefauxmonde.fr"}
-    else{barData.labels[0] = "lemonde.fr"};
-    barReference?.update();
-    lineReference?.update();
-  }
-
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-
   return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
-    <SectionTitle title="Par période" />
+    <SectionTitle title="Le mois passé" />
     <p className="mb-4 text-sm text-gray-700">
-      Les graphiques suivants présentent les sources utilisées sur une période donnée.
+      Les graphiques suivants présentent les sources utilisées au cours des 30 derniers jours (du {oneMonthAgoDate.toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'})} au {todayDate.toLocaleDateString('fr-FR', {day:'numeric', month:'short', year:'numeric'})}).
     </p>
 
-    <div className="flex flex-col md:flex-row md:justify-around gap-3">
-      Début:
-      <DatePicker
-        selected={startDate}
-        onChange={(date: Date) => setStartDate(date)}
-        startDate={startDate}
-        endDate={endDate}
-        minDate={new Date("12/20/2015")}
-        maxDate={endDate}
-        dateFormat="dd/MM/yyyy"
-        locale={fr}
-      />
-    </div>
-
-    <div className="flex flex-col md:flex-row md:justify-around gap-3">
-      Fin:
-      <DatePicker
-        selected={endDate}
-        onChange={(date: Date) => setEndDate(date)}
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
-        maxDate={new Date()}
-        dateFormat="dd/MM/yyyy"
-        locale={fr}
-      />
-    </div>
-    
-    <button onClick={afficherPeriode}>
-      Afficher
-    </button>
     <div className="shadow-md rounded md:p-5">
       <p className="mb-4 text-sm text-gray-700">Top 10 sur cette période :</p>
-      <Bar options={barOptions} data={barData} ref={(reference) => barReference=reference}/>
+      <Bar options={barOptions} data={barData} />
       <p className="mb-4 text-sm text-gray-700">Nombre de sources par vidéo :</p>
-      <Line options={lineOptions} data={lineData} ref={(reference) => lineReference=reference}/>
+      <Line options={lineOptions} data={lineData} />
     </div>
   </section>;
 }
