@@ -26,7 +26,7 @@ export const handler: Handler = async (event, context) => {
                                                 WHERE blacklist_url=url_short
                                                 OR blacklist_url=url_full)
                                     GROUP BY register_common_name
-                                    ORDER BY number_urls DESC, most_recent DESC) table_data`
+                                    ORDER BY number_urls DESC, most_recent DESC, register_common_name) table_data`
   
   sql.end()
 
