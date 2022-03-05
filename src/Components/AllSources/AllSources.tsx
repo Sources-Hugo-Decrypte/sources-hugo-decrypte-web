@@ -114,7 +114,7 @@ function AllSources() {
     };
     
     // loading animation :
-    if (true) {
+    if (loading) {
         return (<section className="m-4 md:w-2/3 md:mx-auto md:my-16">
             <Header />
             <div className="animate-pulse shadow-md rounded m-4 p-4 md:my-8 md:mx-auto">
