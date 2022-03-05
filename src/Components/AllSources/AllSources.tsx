@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import AllSourcesData from '../../Data/AllSourcesData';
 import AllSourcesSingleData from '../../Data/AllSourcesSingleData';
 import useFetch from '../../Utils/useFetch';
@@ -28,11 +28,6 @@ function AllSources() {
         percentage: "Part",
         lastDate: "Date"
     };
-
-    // Display data when loading is over :
-    useEffect(() =>{
-        setSourcesData(fetchedData);
-    }, [fetchedData]);
 
      // ---------------- Sorting ---------------- //
     const [sourcesData, setSourcesData] = useState<AllSourcesData>([]);
@@ -77,6 +72,7 @@ function AllSources() {
         setSourcesData(sorted);
     }
 
+    // Automatic sorting when sort configuration is changed :
     useMemo(() => {
         sortArray(sourcesData)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -114,6 +110,11 @@ function AllSources() {
         }
         return sortConfig.key === key ? sortConfig.direction : undefined;
     };
+
+    // Display data when loading is over :
+    useMemo(() =>{
+        setSourcesData(fetchedData);
+    }, [fetchedData]);
     
     // loading animation :
     if (loading) {
