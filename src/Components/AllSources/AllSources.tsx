@@ -190,15 +190,6 @@ function AllSources() {
         setSourcesWidth(newSourcesWidth);
     }
 
-    /*useEffect(() => {
-        if(refDiv !== null){
-            console.log("bouyah");
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fetchedData]);*/
-
-
-
 
 
 
@@ -213,41 +204,41 @@ function AllSources() {
                 </div>
 
                 <div className="invisible md:visible font-bold grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 max-h-0 md:max-h-min p-1 mb-1">
-                    <p className="w-11 pl-1">{listLabels.grade}</p>
-                    <p className="w-72 pl-1">{listLabels.name}</p>
-                    <p className="w-12 pl-1">{listLabels.totalLinks}</p>
-                    <p className="w-20 pl-1">{listLabels.percentage}</p>
-                    <p className="w-max pl-1">{listLabels.lastDate}</p>
+                    <p style={sourcesStyle.grade} className="w-11 pl-1">{listLabels.grade}</p>
+                    <p style={sourcesStyle.name} className="w-72 pl-1">{listLabels.name}</p>
+                    <p style={sourcesStyle.totalLinks} className="w-12 pl-1">{listLabels.totalLinks}</p>
+                    <p style={sourcesStyle.percentage} className="w-20 pl-1">{listLabels.percentage}</p>
+                    <p style={sourcesStyle.lastDate} className="w-max pl-1">{listLabels.lastDate}</p>
                 </div>
 
                 <ul className="list">
                     {Array(3).fill(0).map((_, index) => (
                         <li key={index+"-li"}>
-                            <div className="grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 border rounded mb-1 p-1" key={index+"-div"}>
+                            <div ref={refDiv} className="grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 border rounded mb-1 p-1" key={index+"-div"}>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.grade}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <div className="w-8 md:w-11 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-grade-"}></div>
+                                    <div style={sourcesStyle.grade} className="h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-grade-"}></div>
                                 </div>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.name}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <div className="w-16 md:w-72 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-name"}></div>
+                                    <div style={sourcesStyle.name} className="h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-name"}></div>
                                 </div>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.totalLinks}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <div className="w-8 md:w-12 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-totalLinks-"}></div>
+                                    <div style={sourcesStyle.totalLinks} className=" h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-totalLinks-"}></div>
                                 </div>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.percentage}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <div className="w-8 md:w-20 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-percentage-"}></div>
+                                    <div style={sourcesStyle.percentage} className="h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-percentage-"}></div>
                                 </div>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.lastDate}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <div className="w-12 md:w-28 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-lastDate-"}></div>
+                                    <div style={sourcesStyle.lastDate} className="h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-lastDate-"}></div>
                                 </div>
                             </div>
                         </li>
