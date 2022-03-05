@@ -283,7 +283,7 @@ function AllSources() {
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.name}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <p style={sourcesStyle.name} className="border border-purple-500" key={source.name+"-name"}>
+                                    <p style={sourcesStyle.name} className="break-words border border-purple-500" key={source.name+"-name"}>
                                         {source.name}
                                     </p>
                                 </div>
