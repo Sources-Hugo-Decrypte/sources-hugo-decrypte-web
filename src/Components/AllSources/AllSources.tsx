@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import AllSourcesData from '../../Data/AllSourcesData';
+import AllSourcesSingleData from '../../Data/AllSourcesSingleData';
 import useFetch from '../../Utils/useFetch';
 import SectionTitle from "../Common/SectionTitle";
 import "./allsources.css";
@@ -38,9 +39,9 @@ function AllSources() {
     const sortConfigDefault = { key: 'grade', direction: 'asc' };
     const [sortConfig, setSortConfig] = useState(sortConfigDefault);
 
-    const sortArray = () => {
+    const sortArray = (arrayData: AllSourcesData) => {
         // Default, sorted by grade (i.e by number of links) :
-        var sorted = [...sourcesData].sort((a, b) => {
+        var sorted = [...arrayData].sort((a, b) => {
             if (a['grade'] < b['grade']) {
                 return sortConfig.direction === 'asc' ? -1 : 1;
             }
@@ -50,7 +51,7 @@ function AllSources() {
             return 0;
         });
         if (sortConfig.key === "name"){
-            sorted = [...sourcesData].sort((a, b) => {
+            sorted = [...arrayData].sort((a, b) => {
                 // a.localeCompare(b) returns -1 if a<b ; 1 if a>b ; 0 if a=b
                 if (a['name'].toLowerCase().localeCompare(b['name'].toLowerCase()) === -1) {
                     return sortConfig.direction === 'asc' ? -1 : 1;
@@ -62,7 +63,7 @@ function AllSources() {
             });
         }
         else if (sortConfig.key === "lastDate"){
-            sorted = [...sourcesData].sort((a, b) => {
+            sorted = [...arrayData].sort((a, b) => {
                 // a.localeCompare(b) returns -1 if a<b ; 1 if a>b ; 0 if a=b
                 if (a['lastDate'] < b['lastDate']) {
                     return sortConfig.direction === 'asc' ? -1 : 1;
@@ -77,7 +78,7 @@ function AllSources() {
     }
 
     useMemo(() => {
-        sortArray()
+        sortArray(sourcesData)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sortConfig.key, sortConfig.direction]);
 
@@ -93,16 +94,17 @@ function AllSources() {
     // ---------------- Searching ---------------- //
     const filter = (e: { target: { value: any; }; }) => {
         const keyword = e.target.value;
+        let resultsData: AllSourcesData = new Array<AllSourcesSingleData>();
         if (keyword !== '') {
             const results = fetchedData.filter((source) => {
                 return source.name.toLowerCase().includes(keyword.toLowerCase());
                 // Use the toLowerCase() method to make it case-insensitive
             });
-            setSourcesData(results);
+            resultsData = results;
         } else {
-            setSourcesData(fetchedData); // If the text field is empty, show all data
+            resultsData = fetchedData; // If the text field is empty, show all data
         }
-        //sortArray(); // -> keep sorting choice when displaying results. ISSUE: so far, it prevents to do any searching
+        sortArray(resultsData); // -> keep sorting choice when displaying results
     };
 
     // ---------------- Design ---------------- //
