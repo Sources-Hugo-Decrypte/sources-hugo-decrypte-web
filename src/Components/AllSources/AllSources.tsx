@@ -4,6 +4,7 @@ import AllSourcesSingleData from '../../Data/AllSourcesSingleData';
 import useFetch from '../../Utils/useFetch';
 import SectionTitle from "../Common/SectionTitle";
 import "./allsources.css";
+import useWindowDimensions from './useWindowDimensions';
 
 function Header() {
     return <div>
@@ -122,14 +123,19 @@ function AllSources() {
 
 
     const refDiv = useRef<HTMLHeadingElement>(null);
+    
+    const { width } = useWindowDimensions();
 
     const sourcesWidthDefault = {
         grade: 44,
-        name: 288,
+        name: 0,
         totalLinks: 48,
         percentage: 80,
         lastDate: 88
     }
+    // Adapt size on screen width :
+    sourcesWidthDefault.name = width*2/3 - (sourcesWidthDefault.grade + sourcesWidthDefault.totalLinks + sourcesWidthDefault.percentage + sourcesWidthDefault.lastDate + 16*4 + 2*5) - 2*16;
+    // '+16*4' because there is a gap-4 between each element | '+2*5' because there is a p-1 for each element | 2*4 because there is m-4 for main section
     const sourcesStyleDefault = {
         grade:{width: `${sourcesWidthDefault.grade}px`},
         name:{width: `${sourcesWidthDefault.name}px`},
@@ -184,6 +190,12 @@ function AllSources() {
         setSourcesWidth(newSourcesWidth);
     }
 
+    /*useEffect(() => {
+        if(refDiv !== null){
+            console.log("bouyah");
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [fetchedData]);*/
 
 
 
