@@ -81,6 +81,15 @@ function AllSources() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sortConfig.key, sortConfig.direction]);
 
+    // ---------------- For sorting in both ways ---------------- //
+    const requestSort = (key: string) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+        direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    }
+
     // ---------------- Searching ---------------- //
     const filter = (e: { target: { value: any; }; }) => {
         const keyword = e.target.value;
@@ -96,15 +105,6 @@ function AllSources() {
         //sortArray(); // -> keep sorting choice when displaying results. ISSUE: so far, it prevents to do any searching
     };
 
-    // ---------------- For sorting in both ways ---------------- //
-    const requestSort = (key: string) => {
-        let direction = 'asc';
-        if (sortConfig.key === key && sortConfig.direction === 'asc') {
-        direction = 'desc';
-        }
-        setSortConfig({ key, direction });
-    }
-
     // ---------------- Design ---------------- //
     const getClassNamesFor = (key: string) => {
         if (!sortConfig) {
@@ -113,15 +113,62 @@ function AllSources() {
         return sortConfig.key === key ? sortConfig.direction : undefined;
     };
     
-    if (loading) {
+    // loading animation :
+    if (true) {
         return (<section className="m-4 md:w-2/3 md:mx-auto md:my-16">
             <Header />
-            <div className="mx-auto my-4 md:w-min text-center">
-                <SectionTitle title="Chargement..." />
+            <div className="animate-pulse shadow-md rounded m-4 p-4 md:my-8 md:mx-auto">
+                <div className="grid grid-flow-row md:grid-flow-col auto-cols-min gap-2 p-1">
+                    <input className="border-2 rounded-full h-max px-3 mb-2 md:mr-4" type="text" placeholder="Chargement..." />
+                </div>
+
+                <div className="invisible md:visible font-bold grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 max-h-0 md:max-h-min p-1 mb-1">
+                    <p className="w-11 pl-1">{listLabels.grade}</p>
+                    <p className="w-72 pl-1">{listLabels.name}</p>
+                    <p className="w-12 pl-1">{listLabels.totalLinks}</p>
+                    <p className="w-20 pl-1">{listLabels.percentage}</p>
+                    <p className="w-max pl-1">{listLabels.lastDate}</p>
+                </div>
+
+                <ul className="list">
+                    {Array(3).fill(0).map((_, index) => (
+                        <li key={index+"-li"}>
+                            <div className="grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 border rounded mb-1 p-1" key={index+"-div"}>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.grade}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <div className="w-8 md:w-11 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-grade-"}></div>
+                                </div>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.name}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <div className="w-16 md:w-72 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-name"}></div>
+                                </div>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.totalLinks}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <div className="w-8 md:w-12 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-totalLinks-"}></div>
+                                </div>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.percentage}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <div className="w-8 md:w-20 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-percentage-"}></div>
+                                </div>
+                                <div className="grid grid-flow-col auto-cols-min w-min">
+                                    <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.lastDate}</p>
+                                    <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
+                                    <div className="w-12 md:w-28 h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index+"-lastDate-"}></div>
+                                </div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </div>
           </section>)
     }
 
+
+    // Final render :
     return (
     <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
         <Header />
@@ -140,7 +187,7 @@ function AllSources() {
                     <p className="w-72">{listLabels.name}</p>
                     <p className="w-12">{listLabels.totalLinks}</p>
                     <p className="w-20">{listLabels.percentage}</p>
-                    <p className="w-32">{listLabels.lastDate}</p>
+                    <p className="w-max">{listLabels.lastDate}</p>
                 </div>
 
                 <ul className="list">
@@ -179,7 +226,7 @@ function AllSources() {
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.lastDate}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <p className="w-max md:w-28" key={source.name+"-lastDate-"+source.lastDate}>
+                                    <p className="w-max" key={source.name+"-lastDate-"+source.lastDate}>
                                         {new Date(source.lastDate).toLocaleDateString('fr-FR')}
                                     </p>
                                 </div>
