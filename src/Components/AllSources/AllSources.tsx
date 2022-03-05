@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import AllSourcesData from '../../Data/AllSourcesData';
 import useFetch from '../../Utils/useFetch';
 import SectionTitle from "../Common/SectionTitle";
@@ -27,6 +27,11 @@ function AllSources() {
         percentage: "Part",
         lastDate: "Date"
     };
+
+    // Display data when loading is over :
+    useEffect(() =>{
+        setSourcesData(fetchedData);
+    }, [fetchedData]);
 
      // ---------------- Sorting ---------------- //
     const [sourcesData, setSourcesData] = useState<AllSourcesData>([]);
@@ -121,7 +126,6 @@ function AllSources() {
     <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
         <Header />
         <div className="shadow-md rounded m-4 p-4 md:my-8 md:mx-auto">
-        <button className="border-2 bg-gray-100 hover:bg-gray-200 rounded-full w-52 px-4 ml-1 mb-4" onClick={() => setSourcesData(fetchedData)}>Charger les données</button>
             <div>
                 <div className="grid grid-flow-row md:grid-flow-col auto-cols-min gap-2 p-1">
                     <input className="border-2 rounded-full h-max px-3 mb-2 md:mr-4" onChange={filter} type="text" placeholder="Recherche" />
