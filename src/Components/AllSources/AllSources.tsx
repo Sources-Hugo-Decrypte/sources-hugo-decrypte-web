@@ -125,7 +125,6 @@ function AllSources() {
     const refDiv = useRef<HTMLHeadingElement>(null);
     
     const { width } = useWindowDimensions();
-
     const sourcesWidthDefault = {
         grade: 44,
         name: 0,
@@ -136,6 +135,7 @@ function AllSources() {
     // Adapt size on screen width :
     sourcesWidthDefault.name = width*2/3 - (sourcesWidthDefault.grade + sourcesWidthDefault.totalLinks + sourcesWidthDefault.percentage + sourcesWidthDefault.lastDate + 16*4 + 2*5) - 2*16;
     // '+16*4' because there is a gap-4 between each element | '+2*5' because there is a p-1 for each element | 2*4 because there is m-4 for main section
+
     const sourcesStyleDefault = {
         grade:{width: `${sourcesWidthDefault.grade}px`},
         name:{width: `${sourcesWidthDefault.name}px`},
@@ -264,11 +264,11 @@ function AllSources() {
                 </div>
 
                 <div className="invisible md:visible font-bold grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 max-h-0 md:max-h-min p-1">
-                    <p style={sourcesStyle.grade} className="border border-purple-500">{listLabels.grade}</p>
-                    <p style={sourcesStyle.name} className="border border-purple-500">{listLabels.name}</p>
-                    <p style={sourcesStyle.totalLinks} className="border border-purple-500">{listLabels.totalLinks}</p>
-                    <p style={sourcesStyle.percentage} className="border border-purple-500">{listLabels.percentage}</p>
-                    <p style={sourcesStyle.lastDate} className="border border-purple-500">{listLabels.lastDate}</p>
+                    <p style={sourcesStyle.grade}>{listLabels.grade}</p>
+                    <p style={sourcesStyle.name}>{listLabels.name}</p>
+                    <p style={sourcesStyle.totalLinks}>{listLabels.totalLinks}</p>
+                    <p style={sourcesStyle.percentage}>{listLabels.percentage}</p>
+                    <p style={sourcesStyle.lastDate}>{listLabels.lastDate}</p>
                 </div>
 
                 <ul className="list">
@@ -279,35 +279,35 @@ function AllSources() {
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.grade}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <p style={sourcesStyle.grade} className="border border-purple-500" key={source.name+"-grade-"+source.grade}>
+                                    <p style={sourcesStyle.grade} key={source.name+"-grade-"+source.grade}>
                                         {source.grade}
                                     </p>
                                 </div>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.name}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <p style={sourcesStyle.name} className="break-words border border-purple-500" key={source.name+"-name"}>
+                                    <p style={sourcesStyle.name} className="break-words" key={source.name+"-name"}>
                                         {source.name}
                                     </p>
                                 </div>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.totalLinks}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <p style={sourcesStyle.totalLinks} className="border border-purple-500" key={source.name+"-totalLinks-"+source.totalLinks}>
+                                    <p style={sourcesStyle.totalLinks} key={source.name+"-totalLinks-"+source.totalLinks}>
                                         {source.totalLinks}
                                     </p>
                                 </div>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.percentage}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <p style={sourcesStyle.percentage} className="border border-purple-500 whitespace-pre" key={source.name+"-percentage-"+source.percentage}>
+                                    <p style={sourcesStyle.percentage} className="whitespace-pre" key={source.name+"-percentage-"+source.percentage}>
                                         {source.percentage} %
                                     </p>
                                 </div>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.lastDate}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <p style={sourcesStyle.lastDate} className="border border-purple-500" key={source.name+"-lastDate-"+source.lastDate}>
+                                    <p style={sourcesStyle.lastDate} key={source.name+"-lastDate-"+source.lastDate}>
                                         {new Date(source.lastDate).toLocaleDateString('fr-FR')}
                                     </p>
                                 </div>
