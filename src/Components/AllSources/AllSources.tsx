@@ -285,7 +285,7 @@ function AllSources() {
                     {sourcesData && sourcesData.length > 0 ? (
                         sourcesData.map(source => (
                         <li key={source.name+"-li"}>
-                            <div ref={refDiv} className="grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 border rounded mb-1 p-1" key={source.name+"-div"}>
+                            <div ref={refDiv} className="grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 border rounded mb-1 p-1 hover:bg-gray-50" key={source.name+"-div"}>
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.grade}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
