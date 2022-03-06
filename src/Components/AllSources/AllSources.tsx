@@ -134,7 +134,18 @@ function AllSources() {
     }
     // Adapt size on screen width :
     sourcesWidthDefault.name = width*2/3 - (sourcesWidthDefault.grade + sourcesWidthDefault.totalLinks + sourcesWidthDefault.percentage + sourcesWidthDefault.lastDate + 16*4 + 2*5) - 2*16;
-    // '+16*4' because there is a gap-4 between each element | '+2*5' because there is a p-1 for each element | 2*4 because there is m-4 for main section
+    // '+16*4' because there is a gap-4 between each element | '+2*5' because there is a p-1 for each element | 2*16 because there is m-4 for main section
+    // for mobile :
+    if(sourcesWidthDefault.name < 0) {
+        sourcesWidthDefault.name = width - 4*16 - 2*16 - 2*2 - 2*1 - 56 - 13 - 10;
+        // '-4*16' beacause of double m-4 in both main section and main div
+        // '-2*16' because there is a p-4 for main div
+        // '-2*2' because there is a p-1 for each element
+        // '-2*1' because there is ml-1 for 'name' element
+        // '-56' because label name is w-14
+        // '-13' beacause of width of ' : '
+        // -10 for axtra padding
+    }
 
     const sourcesStyleDefault = {
         grade:{width: `${sourcesWidthDefault.grade}px`},
@@ -171,7 +182,6 @@ function AllSources() {
     }, []);
 
     const updateSourcesNamesWidth = () => {
-        //console.log('width : ', refDiv.current ? refDiv.current.offsetWidth : 0);
         const newSourcesWidth = {
             grade: sourcesWidth.grade,
             name: sourcesWidth.name,
@@ -286,7 +296,7 @@ function AllSources() {
                                 <div className="grid grid-flow-col auto-cols-min w-min">
                                     <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.name}</p>
                                     <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                    <p style={sourcesStyle.name} className="break-words" key={source.name+"-name"}>
+                                    <p style={sourcesStyle.name} className="md:break-words" key={source.name+"-name"}>
                                         {source.name}
                                     </p>
                                 </div>
