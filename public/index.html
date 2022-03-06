@@ -1,20 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Sources Hugo Décrypte"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Sources Hugo Décrypte</title>
-  </head>
-  <body>
-    <noscript>Activez le JavaScript pour naviguer sur le site. You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+<html lang="fr" prefix="og:http://ogp.me/ns#">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description"
+    content="Ce site présente des statistiques sur les sources fournies pour chaque vidéo de la chaîne YouTube d’actualité: Hugo Décrypte - Actus du Jour." />
+
+  <!-- Open Graph -->
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="Sources Hugo Décrypte" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sourceshugodecrypte.fr" />
+  <meta property="og:image" content="%PUBLIC_URL%/open-graph-logo.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="600" />
+  <meta property="og:image:alt" content="Logo Sources Hugo Décrypte" />
+  <meta property="og:site_name" content="Sources Hugo Décrypte" />
+  <meta property="og:description"
+    content="Ce site présente des statistiques sur les sources fournies pour chaque vidéo de la chaîne YouTube d’actualité: Hugo Décrypte - Actus du Jour." />
+
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>Sources Hugo Décrypte</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://sourceshugodecrypte.fr/",
+      "about": "Ce site présente des statistiques sur les sources fournies pour chaque vidéo de la chaîne YouTube d’actualité: Hugo Décrypte - Actus du Jour.",
+      "creator": {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Sources Hugo Décrypte",
+          "url": "https://sourceshugodecrypte.fr/",
+          "logo": "https://sourceshugodecrypte.fr/open-graph-logo.png",
+          "foundingDate": "2022",
+          "founders": [
+              {
+                  "@type": "Person",
+                  "name": "Thomas Couacault",
+                  "gender": "male"
+              },
+              {
+                  "@type": "Person",
+                  "name": "Youën Ruaux",
+                  "gender": "male"
+              }
+          ]
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <noscript>Activez le JavaScript pour naviguer sur le site. You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
 </html>
