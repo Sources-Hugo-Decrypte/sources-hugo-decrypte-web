@@ -37,21 +37,11 @@ import {
         nbSources: {
             date: Array(25).fill("chargement"),
             totalSources: Array(25).fill(0)
-        },
-        nbLinks: {
-            date: Array(25).fill("chargement"),
-            totalLinks: Array(25).fill(0)
         }
     }
     const lineDataWaiting = {
         labels: periodSourcesDataWaiting.nbSources.date,
         datasets: [
-          {
-            label: 'Nombre de liens',
-            data: periodSourcesDataWaiting.nbLinks.totalLinks,
-            borderColor: '#d1d5db',
-            backgroundColor: '#d1d5db',
-          },
           {
             label: 'Nombre de sources',
             data: periodSourcesDataWaiting.nbSources.totalSources,
@@ -91,19 +81,6 @@ import {
       }
       avgNb /= N;
       avgSourcesDataset.push(avgNb)
-    }
-  
-    // moving average of links per video :
-    const avgLinksDataset = new Array<number>();
-    for(let index = 0 ; index < periodSourcesData.nbLinks.totalLinks.length ; index++){
-      let avgNb = 0;
-      let N=NumElements;
-      if(index+1<(NumElements)){N=index+1}
-      for (let i = index ; index-i < N ; i--){
-        avgNb += periodSourcesData.nbLinks.totalLinks[i];
-      }
-      avgNb /= N;
-      avgLinksDataset.push(avgNb)
     }
   
     const lineData = {
