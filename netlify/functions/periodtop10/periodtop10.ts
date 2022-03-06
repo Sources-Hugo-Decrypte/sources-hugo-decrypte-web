@@ -11,6 +11,12 @@ export const handler: Handler = async (event, context) => {
         totalLinks: new Array<number>(),
         percentages: new Array<number>()
     }
+
+    const todayDate = new Date();
+    const oneMonthAgoDate = new Date();
+    oneMonthAgoDate.setDate(todayDate.getDate() - 30);
+    const startDate = "'"+oneMonthAgoDate.toLocaleDateString('en-EN')+"'";
+    const endDate = "'"+todayDate.toLocaleDateString('en-EN')+" 23:59:59'";
   
     const periodTop10Res = await sql`SELECT register_common_name AS "label", COUNT(*) AS "number_urls"
                                     FROM register_table
@@ -19,7 +25,7 @@ export const handler: Handler = async (event, context) => {
                                     WHERE NOT EXISTS (SELECT * FROM blacklist_table
                                                       WHERE blacklist_url=url_short
                                                       OR blacklist_url=url_full)
-                                    AND video_date BETWEEN '02/02/2022' AND '04/03/2022 23:59:59'
+                                    AND video_date BETWEEN ${startDate} AND ${endDate}
                                     GROUP BY register_common_name
                                     ORDER BY number_urls
                                     DESC LIMIT 10;`

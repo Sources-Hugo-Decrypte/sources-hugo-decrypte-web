@@ -12,6 +12,12 @@ export const handler: Handler = async (event, context) => {
           totalSources: new Array<number>()
       }
     }
+
+    const todayDate = new Date();
+    const oneMonthAgoDate = new Date();
+    oneMonthAgoDate.setDate(todayDate.getDate() - 30);
+    const startDate = "'"+oneMonthAgoDate.toLocaleDateString('en-EN')+"'";
+    const endDate = "'"+todayDate.toLocaleDateString('en-EN')+" 23:59:59'";
     
     const periodNbSourcesRes = await sql`SELECT * FROM
                                         (WITH non_empty_source_table AS
@@ -22,13 +28,13 @@ export const handler: Handler = async (event, context) => {
                                         WHERE NOT EXISTS (SELECT * FROM blacklist_table
                                                   WHERE blacklist_url=url_short
                                                   OR blacklist_url=url_full)
-                                        AND video_date BETWEEN '02/02/2022' AND '04/03/2022 23:59:59'
+                                        AND video_date BETWEEN ${startDate} AND ${endDate}
                                         GROUP BY video_id, video_date)
                                         SELECT video_id, video_date AS "date", 0 AS "number_sources"
                                         FROM video_table
                                         WHERE NOT EXISTS (SELECT * FROM non_empty_source_table
                                                   WHERE video_table.video_id=non_empty_source_table.video_id)
-                                        AND video_date BETWEEN '02/02/2022' AND '04/03/2022 23:59:59'
+                                        AND video_date BETWEEN ${startDate} AND ${endDate}
 
                                         UNION
 
@@ -39,7 +45,7 @@ export const handler: Handler = async (event, context) => {
                                         WHERE NOT EXISTS (SELECT * FROM blacklist_table
                                                   WHERE blacklist_url=url_short
                                                   OR blacklist_url=url_full)
-                                        AND video_date BETWEEN '02/02/2022' AND '04/03/2022 23:59:59'
+                                        AND video_date BETWEEN ${startDate} AND ${endDate}
                                         GROUP BY video_id, video_date) table_total
                                         ORDER BY date;`
     
