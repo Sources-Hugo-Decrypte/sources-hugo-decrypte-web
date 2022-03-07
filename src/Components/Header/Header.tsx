@@ -10,13 +10,20 @@ function Header() {
           <img className="inline-block h-12 mb-1" src={logo} alt="Sources Hugo Décrypte Logo" />
         </a>
         <nav className="md:ml-auto">
-          <ul className="flex justify-around mt-2 md:mt-0 md:space-x-6">
+          <ul className="flex flex-wrap justify-around my-2 md:mt-0 md:space-x-6">
             <li>
               <NavLink to="/"
                 className={({ isActive }) => {
                   if (isActive) return "p-2 rounded-md text-white bg-gradient-to-r from-purple-400 to-blue-400"
                   else return "p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400"
                 }}>Accueil</NavLink>
+            </li>
+            <li>
+              <NavLink to="/allsources"
+                className={({ isActive }) => {
+                  if (isActive) return "p-2 rounded-md text-white bg-gradient-to-r from-purple-400 to-blue-400"
+                  else return "p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400"
+                }}>Sources</NavLink>
             </li>
             <li>
             <NavLink to="/search"
@@ -32,7 +39,7 @@ function Header() {
                   else return "p-2 rounded-md hover:text-white bg-gradient-to-r hover:from-purple-400 hover:to-blue-400"
                 }}>À propos</NavLink>
             </li>
-            <li className="md:hidden">
+            <li className="ml-4 md:hidden">
               <a href="https://github.com/Sources-Hugo-Decrypte/" rel="external nofollow" title="Voir les sources sur GitHub">
                 <img src={githubMark} alt="Github Mark" className="h-6 w-6" />
               </a>
