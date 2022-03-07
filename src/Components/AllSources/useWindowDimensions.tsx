@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
+    const { innerWidth: windowWidth, innerHeight: windowHeight } = window;
     return {
-      width,
-      height
+      windowWidth,
+      windowHeight
     };
-}
+  }
   
 export default function useWindowDimensions() {
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
@@ -21,4 +21,4 @@ export default function useWindowDimensions() {
     }, []);
   
     return windowDimensions;
-}
+  }
