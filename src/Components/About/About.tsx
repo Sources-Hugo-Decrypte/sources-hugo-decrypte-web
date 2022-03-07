@@ -8,7 +8,7 @@ function About() {
   const extLinkIncon = <ExternalLinkIcon className="h-4 w-4" />;
 
   return (
-    <div className="m-4 p-4 md:mx-auto md:my-4 md:w-1/2">
+    <div className="m-4 p-4 md:mx-auto md:my-4 md:w-2/3">
       <p className="shadow-md rounded p-5 my-8">
         <p className="font-bold text-lg mb-2">À propos</p>
         Ce site a pour but de fournir des statistiques sur les sources utilisées par Hugo Décrypte dans sa chaîne YouTube <a className="underline" href="https://www.youtube.com/c/HugoD%C3%A9crypte" rel="external nofollow">Hugo Décrypte - Actus du Jour</a>, qui présente des vidéos sur l'actualité.
