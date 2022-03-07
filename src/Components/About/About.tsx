@@ -29,7 +29,7 @@ function About() {
         <div className="p-4 md:p-5 flex flex-col items-center">
           <img className="rounded-full w-52 md:w-60" alt="Youen" src={picYouen} />
           <p className="text-center my-4">Youën Ruaux</p>
-          <p className="text-justify my-2">Logoden biniou degemer mat an penn ar bed diwezh, Mur Doue kelenner war gazek aotre kerzhout Roazhon Park koulz, echuiñ Kemperle gar mab kurun klask pelec’h.</p>
+          <p className="text-justify my-2">Ingénieur logiciel et systèmes embarqués, j'accorde de l'importance à la prise de recul sur les sujets d'actualité.</p>
           <div className="flex md:items-center">
             <a className="underline" href="https://www.linkedin.com/in/profile-yrx/" rel="external nofollow">Linkedin</a>
             {extLinkIncon}
