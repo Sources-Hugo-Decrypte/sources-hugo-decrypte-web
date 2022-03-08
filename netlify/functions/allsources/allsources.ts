@@ -1,13 +1,12 @@
 import { Handler } from '@netlify/functions'
 import AllSourcesData from '../../../src/Data/AllSourcesData'
-import AllSourcesSingleData from '../../../src/Data/AllSourcesSingleData'
 const postgres = require('postgres');
 
 export const handler: Handler = async (event, context) => {
 
-  const sql = postgres(process.env.HDS_DATABASE_CON, {max: 1, idle_timeout: 2})
-  
-  const allSourcesData: AllSourcesData = new Array<AllSourcesSingleData>();
+  const sql = postgres(process.env.HDS_DATABASE_CON, { max: 1, idle_timeout: 2 })
+
+  const allSourcesData: AllSourcesData = [];
 
   const allSourcesDataRes = await sql`SELECT * FROM
                                     (SELECT COUNT(*) AS "total_links"
@@ -27,13 +26,13 @@ export const handler: Handler = async (event, context) => {
                                                 OR blacklist_url=url_full)
                                     GROUP BY register_common_name
                                     ORDER BY number_urls DESC, most_recent DESC, register_common_name) table_data`
-  
+
   sql.end()
 
   allSourcesDataRes.forEach((row, index) => {
     allSourcesData.push(
       {
-        grade: index+1,
+        grade: index + 1,
         name: row.label,
         totalLinks: Number(row.number_urls),
         percentage: Number((row.number_urls / row.total_links * 100).toFixed(2)),
