@@ -207,11 +207,11 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                             <input className="border-2 rounded-full h-max px-3 mb-2 md:mr-4" type="text" placeholder="Chargement..." />
                         </div>
                     ) : (
-                        <div className="grid grid-flow-row md:grid-flow-col auto-cols-min gap-2 p-1">
-                            <input className="border-2 rounded-full h-max px-3 mb-2 md:mr-4" onChange={filter} type="text" placeholder="Recherche" />
-                            <button className={getClassNamesFor('grade') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max w-max px-4 py-1"} onClick={() => requestSort('grade')}>Rang</button>
-                            <button className={getClassNamesFor('name') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max w-max px-4 py-1"} onClick={() => requestSort('name')}>A-Z</button>
-                            <button className={getClassNamesFor('lastDate') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max w-max px-4 py-1"} onClick={() => requestSort('lastDate')}>Date</button>
+                        <div className="flex flex-row flex-wrap justify-start gap-x-3">
+                            <input className="border-2 rounded-full h-max px-3 basis-full mb-2" onChange={filter} type="text" placeholder="Recherche" />
+                            <button className={getClassNamesFor('grade') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max px-4 py-1"} onClick={() => requestSort('grade')}>Rang</button>
+                            <button className={getClassNamesFor('name') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max px-4 py-1"} onClick={() => requestSort('name')}>A-Z</button>
+                            <button className={getClassNamesFor('lastDate') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max px-4 py-1"} onClick={() => requestSort('lastDate')}>Date</button>
                         </div>
                     )}
 
