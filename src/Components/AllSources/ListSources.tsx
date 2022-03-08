@@ -110,7 +110,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
         if (sortConfig && sortConfig.key === key) {
             let sortDirectionClass = 'after:text-xs after:ml-1'
 
-            switch(sortConfig.direction) {
+            switch (sortConfig.direction) {
                 case SortDirection.ASCENDING:
                     sortDirectionClass += " after:content-['▼']"
                     break;
@@ -144,50 +144,52 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                         </div>
                     )}
 
-                <div className="invisible md:visible font-bold grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 max-h-0 md:max-h-min p-1">
+                {/* <div className="invisible md:visible font-bold grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 max-h-0 md:max-h-min p-1">
                     <p>{listLabels.grade}</p>
                     <p>{listLabels.name}</p>
                     <p>{listLabels.totalLinks}</p>
                     <p>{listLabels.percentage}</p>
                     <p>{listLabels.lastDate}</p>
-                </div>
+                </div> */}
 
-                {loading
+                <table className="grid grid-cols-1 md:grid-cols-5 border-2 border-b-0">
+                    <thead className="contents">
+                        <tr className="contents">
+                            <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Rang</th>
+                            <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Source</th>
+                            <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Liens</th>
+                            <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Part</th>
+                            <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody className="contents">
+                        <tr className="contents">
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">000001</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">Lani</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">Ovendale</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">lovendale0@w3.org</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2">7850 Old Shore Drive</td>
+                        </tr>
+                        <tr className="contents">
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">000001</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">Lani</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">Ovendale</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">lovendale0@w3.org</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2">7850 Old Shore Drive</td>
+                        </tr>
+                        <tr className="contents">
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">000001</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">Lani</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">Ovendale</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">lovendale0@w3.org</td>
+                            <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2">7850 Old Shore Drive</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {/* {loading
                     // if loading :
                     ? (
-                        <ul>
-                            {Array(3).fill(0).map((_, index) => (
-                                <li key={index + "-li"}>
-                                    <div ref={refDiv} className="grid grid-flow-row md:grid-flow-col md:auto-cols-min md:gap-4 border rounded mb-1 p-1" key={index + "-div"}>
-                                        <div className="grid grid-flow-col auto-cols-min w-min">
-                                            <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.grade}</p>
-                                            <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                            <div className="h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index + "-grade-"}></div>
-                                        </div>
-                                        <div className="grid grid-flow-col auto-cols-min w-min">
-                                            <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.name}</p>
-                                            <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                            <div className="h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index + "-name"}></div>
-                                        </div>
-                                        <div className="grid grid-flow-col auto-cols-min w-min">
-                                            <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.totalLinks}</p>
-                                            <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                            <div className=" h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index + "-totalLinks-"}></div>
-                                        </div>
-                                        <div className="grid grid-flow-col auto-cols-min w-min">
-                                            <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.percentage}</p>
-                                            <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                            <div className="h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index + "-percentage-"}></div>
-                                        </div>
-                                        <div className="grid grid-flow-col auto-cols-min w-min">
-                                            <p className="w-14 font-bold whitespace-pre md:invisible md:max-w-0">{listLabels.lastDate}</p>
-                                            <p className="font-bold whitespace-pre md:invisible md:max-w-0"> : </p>
-                                            <div className="h-2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" key={index + "-lastDate-"}></div>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
+                        <span>TODO: Loading placeholder</span>
                     )
                     // if not loading :
                     : (
@@ -238,7 +240,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                                 <div className="text-center border rounded mb-1 p-1">Pas de résultat</div>
                             )}
                         </ul>
-                    )}
+                    )} */}
             </div>
         </div>
     )
