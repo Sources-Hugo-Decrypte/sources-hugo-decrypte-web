@@ -152,7 +152,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                     <p>{listLabels.lastDate}</p>
                 </div> */}
 
-                <table className="grid grid-cols-1 md:grid-cols-5 border-2 border-b-0">
+                <table className="grid grid-cols-1 md:grid-cols-5 border-2 border-b-0 rounded">
                     <thead className="contents">
                         <tr className="contents">
                             <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Rang</th>
