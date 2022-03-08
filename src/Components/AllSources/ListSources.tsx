@@ -9,14 +9,6 @@ enum SortDirection {
 
 function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, loading: boolean }) {
 
-    const listLabels = {
-        grade: "Rang",
-        name: "Source",
-        totalLinks: "Liens",
-        percentage: "Part",
-        lastDate: "Date"
-    };
-
     const [sourcesData, setSourcesData] = useState<AllSourcesData>([]);
 
     // Display data when loading is over :
@@ -122,8 +114,6 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
         }
         return undefined
     };
-
-    const refDiv = useRef<HTMLHeadingElement>(null); // -> ref to the div that contains one source data
 
     // ---------------- Layout ---------------- //
 
