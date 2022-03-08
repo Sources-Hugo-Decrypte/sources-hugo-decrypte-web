@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import AllSourcesData from '../../Data/AllSourcesData';
 import AllSourcesSingleData from '../../Data/AllSourcesSingleData';
 
@@ -132,8 +132,8 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
             <div>
                 {loading
                     ? (
-                        <div className="grid grid-flow-row md:grid-flow-col auto-cols-min gap-2 p-1">
-                            <input className="border-2 rounded-full h-max px-3 mb-2 md:mr-4" type="text" placeholder="Chargement..." />
+                        <div className="flex flex-row flex-wrap justify-start gap-x-3">
+                            <input className="border-2 rounded-full h-max px-3 basis-full mb-2" type="text" placeholder="Chargement..." />
                         </div>
                     ) : (
                         <div className="flex flex-row flex-wrap justify-start gap-x-3">
