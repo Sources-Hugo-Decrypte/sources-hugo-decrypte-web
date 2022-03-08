@@ -23,7 +23,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
 
     // Display data when loading is over :
     useMemo(() => {
-        setSourcesData(fetchedData);
+        setSourcesData(sources => sources = fetchedData);
     }, [fetchedData]);
 
 
@@ -68,7 +68,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                 return 0;
             });
         }
-        setSourcesData(sorted);
+        setSourcesData(sources => sources = sorted);
     }
 
     // Automatic sorting when sort configuration is changed :
@@ -84,7 +84,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
         if (sortConfig.key === key && sortConfig.direction === SortDirection.ASCENDING) {
             direction = SortDirection.DESCENDING
         }
-        setSortConfig({ key, direction })
+        setSortConfig(sortConfig => sortConfig = { key, direction })
     }
 
 
@@ -151,14 +151,14 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
 
     // auto-update sourcesStyle and currentSourcesWidth :
     useEffect(() => {
-        setSourcesStyle({
+        setSourcesStyle(styles => styles = {
             grade: { width: `${sourcesWidth.grade}px` },
             name: { width: `${sourcesWidth.name}px` },
             totalLinks: { width: `${sourcesWidth.totalLinks}px` },
             percentage: { width: `${sourcesWidth.percentage}px` },
             lastDate: { width: `${sourcesWidth.lastDate}px` }
         });
-        setCurrentSourcesWidth(sourcesWidth.grade + sourcesWidth.name + sourcesWidth.totalLinks + sourcesWidth.percentage + sourcesWidth.lastDate + 16 * 4 + 2 * 4 + 2);
+        setCurrentSourcesWidth(w => w = sourcesWidth.grade + sourcesWidth.name + sourcesWidth.totalLinks + sourcesWidth.percentage + sourcesWidth.lastDate + 16 * 4 + 2 * 4 + 2);
     }, [sourcesWidth])
 
     // update layout when resizing :
@@ -183,7 +183,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
         if (refDiv.current != null && currentSourcesWidth < refDiv.current.offsetWidth) {
             newSourcesWidth.name = sourcesWidth.name + (refDiv.current.offsetWidth - currentSourcesWidth);
         }
-        setSourcesWidth(newSourcesWidth);
+        setSourcesWidth(w => w = newSourcesWidth);
     }
 
 
