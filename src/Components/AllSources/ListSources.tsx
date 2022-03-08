@@ -147,10 +147,10 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                 {loading ? (<span>TODO: Loading placeholder</span>) : (
                     <>
                         {sourcesData && sourcesData.length > 0 ? (
-                            <table className="grid grid-cols-1 md:grid-cols-5 border-2 border-b-0 rounded">
+                            <table className="grid grid-cols-1 md:grid-cols-[minmax(0,_0.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] border-2 border-b-0 rounded">
                                 <thead className="contents">
                                     <tr className="contents">
-                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Rang</th>
+                                        <th className="p-3.5 border-r-2 border-b-2">Rang</th>
                                         <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Source</th>
                                         <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Liens</th>
                                         <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Part</th>
@@ -161,7 +161,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                                     {
                                         sourcesData.map(source => (
                                             <tr className="contents" key={source.name + '-row'}>
-                                                <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">{source.grade}</td>
+                                                <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-center text-ellipsis border-b-2 border-r-2">{source.grade}</td>
                                                 <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">{source.name}</td>
                                                 <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">{source.totalLinks}</td>
                                                 <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">{source.percentage} %</td>
