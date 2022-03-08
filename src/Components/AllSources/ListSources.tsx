@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import AllSourcesData from '../../Data/AllSourcesData';
 import AllSourcesSingleData from '../../Data/AllSourcesSingleData';
-import "./allsources.css";
 import useWindowDimensions from './useWindowDimensions';
 
 enum SortDirection {
@@ -111,7 +110,17 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
     // Change arraox design in buttons by changing string in className
     const getClassNamesFor = (key: string): string | undefined => {
         if (sortConfig && sortConfig.key === key) {
-            return sortConfig.direction.toString()
+            let sortDirectionClass = 'after:text-xs after:ml-1'
+
+            switch(sortConfig.direction) {
+                case SortDirection.ASCENDING:
+                    sortDirectionClass += " after:content-['▼']"
+                    break;
+                case SortDirection.DESCENDING:
+                    sortDirectionClass += " after:content-['▲']"
+                    break;
+            }
+            return sortDirectionClass
         }
         return undefined
     };
