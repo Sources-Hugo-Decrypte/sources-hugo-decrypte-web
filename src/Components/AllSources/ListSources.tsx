@@ -128,10 +128,10 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                         </div>
                     ) : (
                         <div className="flex flex-row flex-wrap justify-start gap-x-3 mb-2">
-                            <input className="border-2 rounded-full h-max px-3 basis-full mb-2" onChange={filter} type="text" placeholder="Recherche" />
+                            <input className="border-2 rounded-full h-max px-3 basis-full mb-2 sm:max-w-max" onChange={filter} type="text" placeholder="Recherche" />
                             <button className={getClassNamesFor('grade') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max px-4 py-1"} onClick={() => requestSort('grade')}>Rang</button>
                             <button className={getClassNamesFor('name') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max px-4 py-1"} onClick={() => requestSort('name')}>A-Z</button>
-                            <button className={getClassNamesFor('lastDate') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max px-4 py-1"} onClick={() => requestSort('lastDate')}>Date</button>
+                            <button className={getClassNamesFor('lastDate') + " bg-gray-100 hover:bg-gray-200 rounded-full h-max px-4 py-1"} onClick={() => requestSort('lastDate')}><CalendarIcon className="w-6 h-5 align-text-top inline" /> Date</button>
                         </div>
                     )}
 
