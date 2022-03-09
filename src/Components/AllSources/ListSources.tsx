@@ -142,21 +142,21 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                                 <thead className="hidden sm:contents">
                                     <tr className="sm:contents">
                                         <th className="p-3.5 border-r-2 border-b-2">Rang</th>
-                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Source</th>
-                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Liens</th>
+                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2"><NewspaperIcon className="w-6 h-5 align-text-top inline" /> Source</th>
+                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2"><LinkIcon className="w-5 h-5 align-text-top inline" /> Liens</th>
                                         <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Part</th>
-                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2">Date</th>
+                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2"><CalendarIcon className="w-5 h-5 align-text-top inline" /> Date</th>
                                     </tr>
                                 </thead>
                                 <tbody className="sm:contents">
                                     {
                                         sourcesData.map(source => (
-                                            <tr className="grid grid-cols-5 mb-4 text-center sm:contents" key={source.name + '-row'}>
+                                            <tr className="grid grid-cols-5 mb-4 sm:text-center sm:contents" key={source.name + '-row'}>
                                                 <td className="col-span-1 ml-2 mt-2 border-purple-600 border-2 border-b-2 rounded overflow-hidden whitespace-nowrap text-ellipsis text-center text-purple-600 font-bold sm:m-0 sm:pt-1 sm:text-black sm:border-gray-200 sm:border-0 sm:border-b-2 sm:border-r-2 sm:rounded-none">{source.grade}</td>
-                                                <td className="col-span-4 pt-3 text-center overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1"><NewspaperIcon className="w-6 h-6 sm:hidden inline-block" /> {source.name}</td>
-                                                <td className="col-span-2 pl-1.5 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1"><LinkIcon className="w-4 h-4 sm:hidden inline-block" /> {source.totalLinks} <span className="sm:hidden">liens</span></td>
-                                                <td className="col-span-3 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1">{source.percentage} %</td>
-                                                <td className="col-span-full pl-1.5 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:col-span-1 sm:p-0 sm:py-1"> <CalendarIcon className="w-4 h-4 sm:hidden inline-block" /> {new Date(source.lastDate).toLocaleDateString('fr-FR')}</td>
+                                                <td className="col-span-4 pt-3 pl-7 overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1"><NewspaperIcon className="w-6 h-6 sm:hidden inline-block" /> {source.name}</td>
+                                                <td className="col-span-2 pl-1.5 py-2 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1"><LinkIcon className="w-4 h-4 sm:hidden inline-block" /> {source.totalLinks} <span className="sm:hidden">liens</span></td>
+                                                <td className="col-span-3 py-2 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1">{source.percentage} %</td>
+                                                <td className="col-span-full pl-1.5 py-2 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:col-span-1 sm:p-0 sm:py-1"> <CalendarIcon className="w-4 h-4 sm:hidden inline-block" /> {new Date(source.lastDate).toLocaleDateString('fr-FR')}</td>
                                             </tr>
                                         ))
                                     }
