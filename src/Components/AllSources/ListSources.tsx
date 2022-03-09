@@ -143,10 +143,9 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                                     <tr className="sm:contents">
                                         <th className="p-2.5 pl-0">Rang</th>
                                         <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Source <NewspaperIcon className="w-6 h-5 align-text-top inline" /></th>
-                                        <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Liens </th>
+                                        <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Liens <LinkIcon className="w-5 h-5 align-text-top inline" /></th>
                                         <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Part</th>
-                                        <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis"><CalendarIcon className="w-5 h-5 align-text-top inline" /> Date</th>
-                                    </tr>
+                                        <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Date <CalendarIcon className="w-5 h-5 align-text-top inline" /></th>                                    </tr>
                                 </thead>
                                 <tbody className="sm:contents">
                                     {
