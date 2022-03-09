@@ -138,7 +138,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                 {loading ? (<span>TODO: Loading placeholder</span>) : (
                     <>
                         {sourcesData && sourcesData.length > 0 ? (
-                            <table className="grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] sm:border sm:border-b-0 rounded">
+                            <table className="grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] sm:border-2 sm:border-b-0 rounded">
                                 <thead className="hidden sm:contents">
                                     <tr className="sm:contents">
                                         <th className="p-3.5 border-r-2 border-b-2">Rang</th>
@@ -151,12 +151,12 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                                 <tbody className="sm:contents">
                                     {
                                         sourcesData.map(source => (
-                                            <tr className="grid grid-cols-5 sm:contents mb-4 border rounded" key={source.name + '-row'}>
-                                                <td className="col-span-1 ml-2 mt-2 border-purple-600 border-2 border-b-2 rounded overflow-hidden whitespace-nowrap text-center text-ellipsis sm:border-b-2 sm:border-r-2"><span className="text-purple-600 font-bold" >{source.grade}</span></td>
-                                                <td className="col-span-4 pt-3 text-center overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2"><NewspaperIcon className="w-6 h-6 sm:hidden inline-block" /> {source.name}</td>
-                                                <td className="col-span-2 pl-1.5 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2"><LinkIcon className="w-4 h-4 sm:hidden inline-block" /> {source.totalLinks} <span className="sm:hidden">liens</span></td>
-                                                <td className="col-span-3 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2">{source.percentage} %</td>
-                                                <td className="col-span-full pl-1.5 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2"> <CalendarIcon className="w-4 h-4 sm:hidden inline-block" /> {new Date(source.lastDate).toLocaleDateString('fr-FR')}</td>
+                                            <tr className="grid grid-cols-5 mb-4 text-center sm:contents" key={source.name + '-row'}>
+                                                <td className="col-span-1 ml-2 mt-2 border-purple-600 border-2 border-b-2 rounded overflow-hidden whitespace-nowrap text-ellipsis text-center text-purple-600 font-bold sm:m-0 sm:pt-1 sm:text-black sm:border-gray-200 sm:border-0 sm:border-b-2 sm:border-r-2 sm:rounded-none">{source.grade}</td>
+                                                <td className="col-span-4 pt-3 text-center overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1"><NewspaperIcon className="w-6 h-6 sm:hidden inline-block" /> {source.name}</td>
+                                                <td className="col-span-2 pl-1.5 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1"><LinkIcon className="w-4 h-4 sm:hidden inline-block" /> {source.totalLinks} <span className="sm:hidden">liens</span></td>
+                                                <td className="col-span-3 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2 sm:col-span-1 sm:p-0 sm:py-1">{source.percentage} %</td>
+                                                <td className="col-span-full pl-1.5 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:col-span-1 sm:p-0 sm:py-1"> <CalendarIcon className="w-4 h-4 sm:hidden inline-block" /> {new Date(source.lastDate).toLocaleDateString('fr-FR')}</td>
                                             </tr>
                                         ))
                                     }
