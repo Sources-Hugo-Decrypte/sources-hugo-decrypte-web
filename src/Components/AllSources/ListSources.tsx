@@ -138,14 +138,14 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                 {loading ? (<span>TODO: Loading placeholder</span>) : (
                     <>
                         {sourcesData && sourcesData.length > 0 ? (
-                            <table className="grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] sm:border-2 sm:border-b-0 rounded">
+                            <table className="grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_1.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] sm:border-2 sm:border-b-0 rounded">
                                 <thead className="hidden sm:contents">
                                     <tr className="sm:contents">
-                                        <th className="p-3.5 border-r-2 border-b-2">Rang</th>
-                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2"><NewspaperIcon className="w-6 h-5 align-text-top inline" /> Source</th>
-                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2"><LinkIcon className="w-5 h-5 align-text-top inline" /> Liens</th>
-                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Part</th>
-                                        <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2"><CalendarIcon className="w-5 h-5 align-text-top inline" /> Date</th>
+                                        <th className="p-2.5 border-r-2 border-b-2">Rang</th>
+                                        <th className="p-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2"><NewspaperIcon className="w-6 h-5 align-text-top inline" /> Source</th>
+                                        <th className="p-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2"><LinkIcon className="w-5 h-5 align-text-top inline" /> Liens</th>
+                                        <th className="p-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Part</th>
+                                        <th className="p-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2"><CalendarIcon className="w-5 h-5 align-text-top inline" /> Date</th>
                                     </tr>
                                 </thead>
                                 <tbody className="sm:contents">
