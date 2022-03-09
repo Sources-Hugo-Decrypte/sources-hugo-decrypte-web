@@ -12,19 +12,17 @@ function Header() {
                 <br /><br />Plus la source est utilisée, plus elle est en haut du classement. En cas d'égalité, c'est la source qui a été utilisée le plus récemment qui est considérée en premier. La date de la dernière utilisation est indiquée pour chaque source.
             </p>
         </div>
-    </div>;
+    </div>
 }
 
-function AllSources() {    
+function AllSources() {
 
     let [fetchedData, loading] = useFetch<AllSourcesData>('/.netlify/functions/allsources');
 
-    return (
-    <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
+    return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
         <Header />
         <ListSources fetchedData={fetchedData} loading={loading} />
     </section>
-    );
 }
 
 export default AllSources;

@@ -1,6 +1,7 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo } from 'react';
 import AllSourcesData from '../../Data/AllSourcesData';
 import AllSourcesSingleData from '../../Data/AllSourcesSingleData';
+import { CalendarIcon, LinkIcon, NewspaperIcon } from '@heroicons/react/outline'
 
 enum SortDirection {
     ASCENDING = 'asc',
@@ -137,9 +138,9 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                 {loading ? (<span>TODO: Loading placeholder</span>) : (
                     <>
                         {sourcesData && sourcesData.length > 0 ? (
-                            <table className="grid grid-cols-1 md:grid-cols-[minmax(0,_0.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] border-2 border-b-0 rounded">
-                                <thead className="contents">
-                                    <tr className="contents">
+                            <table className="grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] sm:border sm:border-b-0 rounded">
+                                <thead className="hidden sm:contents">
+                                    <tr className="sm:contents">
                                         <th className="p-3.5 border-r-2 border-b-2">Rang</th>
                                         <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Source</th>
                                         <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-r-2 border-b-2">Liens</th>
@@ -147,15 +148,15 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                                         <th className="p-3.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2">Date</th>
                                     </tr>
                                 </thead>
-                                <tbody className="contents">
+                                <tbody className="sm:contents">
                                     {
                                         sourcesData.map(source => (
-                                            <tr className="contents" key={source.name + '-row'}>
-                                                <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-center text-ellipsis border-b-2 border-r-2">{source.grade}</td>
-                                                <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">{source.name}</td>
-                                                <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">{source.totalLinks}</td>
-                                                <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2 border-r-2">{source.percentage} %</td>
-                                                <td className="p-3.5 pt-2.5 pb-2.5 overflow-hidden whitespace-nowrap text-ellipsis border-b-2">{new Date(source.lastDate).toLocaleDateString('fr-FR')}</td>
+                                            <tr className="grid grid-cols-5 sm:contents mb-4 border rounded" key={source.name + '-row'}>
+                                                <td className="col-span-1 ml-2 mt-2 border-purple-600 border-2 border-b-2 rounded overflow-hidden whitespace-nowrap text-center text-ellipsis sm:border-b-2 sm:border-r-2"><span className="text-purple-600 font-bold" >{source.grade}</span></td>
+                                                <td className="col-span-4 pt-3 text-center overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2"><NewspaperIcon className="w-6 h-6 sm:hidden inline-block" /> {source.name}</td>
+                                                <td className="col-span-2 pl-1.5 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2"><LinkIcon className="w-4 h-4 sm:hidden inline-block" /> {source.totalLinks} <span className="sm:hidden">liens</span></td>
+                                                <td className="col-span-3 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2 sm:border-r-2">{source.percentage} %</td>
+                                                <td className="col-span-full pl-1.5 py-1.5 text-sm overflow-hidden whitespace-nowrap text-ellipsis sm:border-b-2"> <CalendarIcon className="w-4 h-4 sm:hidden inline-block" /> {new Date(source.lastDate).toLocaleDateString('fr-FR')}</td>
                                             </tr>
                                         ))
                                     }
