@@ -138,7 +138,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                 {loading ? (<span>TODO: Loading placeholder</span>) : (
                     <>
                         {sourcesData && sourcesData.length > 0 ? (
-                            <table className="grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_1.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] text-justify sm:border-b-0 rounded">
+                            <table className="grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_2.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] text-justify sm:border-b-0 rounded">
                                 <thead className="hidden sm:contents">
                                     <tr className="sm:contents">
                                         <th className="p-2.5 pl-0">Rang</th>
@@ -151,7 +151,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                                     {
                                         sourcesData.map(source => (
                                             <tr className="grid grid-cols-5 mb-4 sm:text-justify sm:contents group" key={source.name + '-row'}>
-                                                <td className="col-span-1 ml-2 mt-2 text-center border-black border-2 rounded sm:rounded-l overflow-hidden whitespace-nowrap text-ellipsis font-bold sm:m-0 sm:pt-1 sm:pl-2 sm:border-none sm:text-justify sm:group-odd:bg-gray-100">{source.grade}</td>
+                                                <td className="col-span-1 ml-2 mt-2 text-center border-black border-2 rounded sm:rounded-none sm:rounded-l overflow-hidden whitespace-nowrap text-ellipsis font-bold sm:m-0 sm:pt-1 sm:pl-2 sm:border-none sm:text-justify sm:group-odd:bg-gray-100">{source.grade}</td>
                                                 <td className="col-span-4 pt-3 pl-2 overflow-hidden whitespace-nowrap text-ellipsis font-bold text-lg sm:text-base sm:col-span-1 sm:p-0 sm:py-1 sm:font-normal sm:group-odd:bg-gray-100">{source.name}</td>
                                                 <td className="col-span-full pl-1.5 py-2 overflow-hidden whitespace-nowrap text-ellipsis sm:col-span-1 sm:p-0 sm:py-1 sm:group-odd:bg-gray-100"><LinkIcon className="w-4 h-4 sm:hidden inline-block" /> {source.totalLinks} <span className="sm:hidden">liens soit {source.percentage} %</span></td>
                                                 <td className="hidden overflow-hidden whitespace-nowrap text-ellipsis col-span-1 py-1 sm:block sm:group-odd:bg-gray-100">{source.percentage} %</td>
