@@ -19,7 +19,7 @@ function About() {
         <div className="p-4 md:p-5 flex flex-col items-center">
           <img className="rounded-full w-52 md:w-60" alt="Thomas" src={picThomas} />
           <p className="text-center my-4">Thomas Couacault</p>
-          <p className="text-justify my-2">Ingénieur en développement logiciel C# (.NET), je suis passionné par l'informatique et les nouvelles technologies.</p>
+          <p className="text-justify my-2">Ingénieur logiciel C# (.NET), je suis passionné par l'informatique et les nouvelles technologies.</p>
           <div className="flex md:items-center">
             <a className="underline mb-7 md:mb-0" href="https://www.linkedin.com/in/thomas-couacault/" rel="external nofollow">
               <img className="h-10 w-10" src={linkedinLogo} alt="Logo profile Linkedin Thomas" />
