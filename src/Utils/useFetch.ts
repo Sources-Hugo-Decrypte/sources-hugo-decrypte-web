@@ -11,9 +11,10 @@ function useFetch<T>(url: string): [T, boolean, string | null] {
 
       try {
         const response = await fetch(url)
-        const responseData: T = await response.json()
 
         if (response.ok) {
+          const responseData: T = await response.json()
+
           setData(d => d = responseData)
           setLoading(loading => loading = false)
         } else {
