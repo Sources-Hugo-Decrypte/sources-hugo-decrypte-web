@@ -14,6 +14,7 @@ function About() {
         Ce site a pour but de fournir des statistiques sur les sources utilisées par Hugo Décrypte dans sa chaîne YouTube <a className="underline" href="https://www.youtube.com/c/HugoD%C3%A9crypte" rel="external nofollow">Hugo Décrypte - Actus du Jour</a>, qui présente des vidéos sur l'actualité.
         <br /><br />Nous souhaitons donner des outils et des pistes de réflexion à toutes celles et ceux qui se questionnent sur la neutralité des propos d'Hugo Décrypte.
         <br /><br />Nous ne sommes pas rattachés à Hugo Décrypte et nous présentons ces données en nous efforçant d'être le plus impartial possible.
+        Nous laissons donc libre à chacun de conclure sur les résultats mis en avant.
       </p>
       <div className="shadow-md rounded p-2 md:p-5 my-8 lg:grid grid-cols-2 gap-4">
         <p className="mb-4 md:mb-0 col-span-2 font-bold text-lg">Qui sommes-nous ?</p>
