@@ -118,13 +118,14 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
 
     // ---------------- Layout ---------------- //
 
+
     return (
         <div className="shadow-md rounded m-4 p-4 md:my-8 md:mx-auto">
             <div>
                 {loading
                     ? (
                         <div className="flex flex-row flex-wrap justify-start gap-x-3">
-                            <input className="border-2 rounded-full h-max px-3 basis-full mb-2" type="text" placeholder="Chargement..." />
+                            <input className="border-2 rounded-full h-max px-3 basis-full mb-6 sm:max-w-max" type="text" placeholder="Chargement..." />
                         </div>
                     ) : (
                         <div className="flex flex-row flex-wrap justify-start gap-x-3 mb-6">
@@ -135,7 +136,31 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                         </div>
                     )}
 
-                {loading ? (<span>TODO: Loading placeholder</span>) : (
+                {loading ? (
+                    <table className="animate-pulse grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_2.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] text-justify sm:border-b-0 rounded">
+                        <thead className="hidden sm:contents">
+                            <tr className="sm:contents">
+                                <th className="p-2.5 pl-0">Rang</th>
+                                <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Source <NewspaperIcon className="w-6 h-5 align-text-top inline" /></th>
+                                <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Liens <LinkIcon className="w-5 h-5 align-text-top inline" /></th>
+                                <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Part</th>
+                                <th className="p-2.5 pl-0 overflow-hidden whitespace-nowrap text-ellipsis">Date <CalendarIcon className="w-5 h-5 align-text-top inline" /></th>                                    </tr>
+                        </thead>
+                        <tbody className="sm:contents">
+                            {
+                                Array(3).fill(0).map((_, index) => (
+                                    <tr className="grid grid-cols-5 mb-4 sm:text-justify sm:contents group" key={index + '-row'}>
+                                        <td className="col-span-1 ml-2 mt-2 text-center my-auto border-black border-2 rounded sm:rounded-none sm:rounded-l font-bold sm:m-0 sm:pt-1 sm:pl-2 sm:border-none sm:text-justify sm:group-odd:bg-gray-100"><div className="h-2 w-6 m-2 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="col-span-4 pt-3 pl-2 sm:whitespace-nowrap font-bold text-lg sm:text-base sm:col-span-1 sm:p-0 sm:py-1 sm:font-normal sm:group-odd:bg-gray-100"><div className="h-2 sm:w-40 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="col-span-full pl-1.5 py-2 sm:col-span-1 sm:p-0 sm:py-1 sm:pl-1 sm:group-odd:bg-gray-100"><div className="h-2 w-40 sm:w-16 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="hidden col-span-1 py-1 sm:block sm:group-odd:bg-gray-100"><div className="h-2 w-16 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="col-span-full pl-1.5 py-2 rounded-r sm:col-span-1 sm:p-0 sm:py-1 -mt-1 sm:-mt-0 sm:group-odd:bg-gray-100"><div className="h-2 w-16 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                ) : (
                     <>
                         {sourcesData && sourcesData.length > 0 ? (
                             <table className="grid grid-cols-1 sm:grid-cols-[minmax(0,_0.5fr)_minmax(0,_2.5fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] text-justify sm:border-b-0 rounded">
