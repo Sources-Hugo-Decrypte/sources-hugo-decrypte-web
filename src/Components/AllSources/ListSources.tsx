@@ -155,7 +155,7 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                                                 <td className="col-span-4 pt-3 pl-2 sm:whitespace-nowrap overflow-hidden text-ellipsis font-bold text-lg sm:text-base sm:col-span-1 sm:p-0 sm:py-1 sm:font-normal sm:group-odd:bg-gray-100">{source.name}</td>
                                                 <td className="col-span-full pl-1.5 py-2 overflow-hidden whitespace-nowrap text-ellipsis sm:col-span-1 sm:p-0 sm:py-1 sm:pl-1 sm:group-odd:bg-gray-100"><LinkIcon className="w-4 h-4 sm:hidden inline-block" /> {source.totalLinks} <span className="sm:hidden">liens soit {source.percentage} %</span></td>
                                                 <td className="hidden overflow-hidden whitespace-nowrap text-ellipsis col-span-1 py-1 sm:block sm:group-odd:bg-gray-100">{source.percentage} %</td>
-                                                <td className="col-span-full pl-1.5 py-2 rounded-r overflow-hidden whitespace-nowrap text-ellipsis sm:col-span-1 sm:p-0 sm:py-1 sm:group-odd:bg-gray-100"> <CalendarIcon className="w-4 h-4 sm:hidden inline-block" /> {new Date(source.lastDate).toLocaleDateString('fr-FR')}</td>
+                                                <td className="col-span-full pl-1.5 py-2 rounded-r overflow-hidden whitespace-nowrap text-ellipsis sm:col-span-1 sm:p-0 sm:py-1 -mt-1 sm:-mt-0 sm:group-odd:bg-gray-100"> <CalendarIcon className="w-4 h-4 sm:hidden inline-block" /> {new Date(source.lastDate).toLocaleDateString('fr-FR')}</td>
                                             </tr>
                                         ))
                                     }
