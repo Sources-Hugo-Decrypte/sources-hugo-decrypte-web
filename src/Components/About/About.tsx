@@ -23,7 +23,7 @@ function About() {
           <div className="mt-2 flex items-center">
             Me suivre :
             <a className="underline" href="https://www.linkedin.com/in/thomas-couacault/" rel="external nofollow">
-              <img className="ml-2 h-8 w-8" src={linkedinLogo} alt="Logo profile Linkedin Thomas" />
+              <img className="ml-2 h-6 w-6" src={linkedinLogo} alt="Logo profile Linkedin Thomas" />
             </a>
           </div>
         </div>
@@ -34,7 +34,7 @@ function About() {
           <div className="mt-2 flex items-center">
             Me suivre :
             <a className="underline" href="https://www.linkedin.com/in/profile-yrx/" rel="external nofollow">
-              <img className="ml-2 h-8 w-8" src={linkedinLogo} alt="Logo profile Linkedin Youën" />
+              <img className="ml-2 h-6 w-6" src={linkedinLogo} alt="Logo profile Linkedin Youën" />
             </a>
           </div>
         </div>
