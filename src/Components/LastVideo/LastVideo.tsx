@@ -3,13 +3,13 @@ import SectionTitle from "../Common/SectionTitle";
 import useFetch from "../../Utils/useFetch";
 
 function LastVideo() {
-    const [videoData, loading, error] = useFetch<LastVideoData>('/.netlify/functions/lastvideo')
+    const { data: videoData, isLoading, error } = useFetch<LastVideoData>('/.netlify/functions/lastvideo', true)
 
     if (error) {
         console.error(error)
-      }   
+    }
 
-    if (loading) {
+    if (isLoading) {
         return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
             <SectionTitle title="Dernière vidéo" />
             <div className="animate-pulse shadow-md rounded px-3 text-center lg:p-5 lg:grid lg:grid-cols-4 lg:gap-4">

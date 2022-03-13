@@ -1,39 +1,54 @@
 import { useEffect, useState } from "react"
 
-function useFetch<T>(url: string): [T, boolean, string | null] {
+type FetchResult<T> = {
+  data: T,
+  isLoading: boolean,
+  error: string | null
+}
 
-  const [data, setData] = useState<T>({} as T)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+function useFetch<T>(url: string, storeInCache: boolean = false): FetchResult<T> {
+
+  const [result, setResult] = useState({
+    data: {} as T,
+    isLoading: true,
+    error: null
+  } as FetchResult<T>)
+  const cacheKey = `cache::${url}`
 
   useEffect(() => {
-    (async function () {
+    const cachedString = storeInCache ? sessionStorage.getItem(cacheKey) : null
 
-      try {
-        const response = await fetch(url)
-        const responseData: T = await response.json()
+    if (cachedString !== null) {
+      setResult(res => res = { ...res, data: JSON.parse(cachedString) as T, isLoading: false })
+    } else {
+      (async function () {
 
-        if (response.ok) {
-          setData(d => d = responseData)
-          setLoading(loading => loading = false)
-        } else {
-          setError(e => e = `Error ${response.status}: ${response.statusText}.`)
+        try {
+          const response = await fetch(url)
+
+          if (response.ok) {
+            const responseData: T = await response.json()
+
+            if (storeInCache) {
+              sessionStorage.setItem(cacheKey, JSON.stringify(responseData))
+            }
+            setResult(res => res = { ...res, data: responseData, isLoading: false })
+          } else {
+            setResult(res => res = { ...res, error: `Error ${response.status}: ${response.statusText}.` })
+          }
+        } catch (error) {
+          let message = ''
+
+          if (error instanceof Error) message = error.message
+          else message = String(error)
+          setResult(res => res = { ...res, error: message })
         }
-      } catch (error) {
-        let message = ''
+      })()
+    }
 
-        if (error instanceof Error) message = error.message
-        else message = String(error)
-        setError(e => e = message)
-      }
-    })()
-  }, [url])
+  }, [url, storeInCache, cacheKey])
 
-  return [
-    data,
-    loading,
-    error
-  ]
+  return result
 }
 
 export default useFetch

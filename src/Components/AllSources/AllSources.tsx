@@ -17,12 +17,16 @@ function Header() {
 
 function AllSources() {
 
-    let [fetchedData, loading] = useFetch<AllSourcesData>('/.netlify/functions/allsources');
+    const { data: allSourcesData, isLoading, error } = useFetch<AllSourcesData>('/.netlify/functions/allsources', true);
+
+    if (error) {
+        console.error(error)
+    }
 
     return <section className="m-4 md:w-4/5 md:mx-auto md:my-16 lg:w-2/3">
-        <Header />
-        <ListSources fetchedData={fetchedData} loading={loading} />
-    </section>
+            <Header />
+            <ListSources fetchedData={allSourcesData} loading={isLoading} />
+        </section>
 }
 
 export default AllSources;
