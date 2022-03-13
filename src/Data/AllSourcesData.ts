@@ -1,9 +1,5 @@
-type AllSourcesData = Array<{
-    grade: number,
-    name: string,
-    totalLinks: number,
-    percentage: number,
-    lastDate: Date
-}>;
+import AllSourcesSingleData from "./AllSourcesSingleData";
+
+type AllSourcesData = Array<AllSourcesSingleData>;
 
 export default AllSourcesData;
