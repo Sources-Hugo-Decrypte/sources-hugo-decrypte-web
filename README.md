@@ -3,7 +3,7 @@
 Ce répertoire contient le code source de la partie web du projet "Sources Hugo Décrypte".
 
 Le rôle de cette partie est :
-- de lire les informations stockées dans la base de données en serveur
+- de lire les informations stockées dans la base de données
 - de réaliser des statistiques sur ces données
 - de les présenter sur le site web [sourceshugodecrypte.fr](https://sourceshugodecrypte.fr)
 
