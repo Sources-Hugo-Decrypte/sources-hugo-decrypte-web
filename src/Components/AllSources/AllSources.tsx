@@ -23,12 +23,10 @@ function AllSources() {
         console.error(error)
     }
 
-    return (
-        <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
+    return <section className="m-4 md:w-4/5 md:mx-auto md:my-16 lg:w-2/3">
             <Header />
             <ListSources fetchedData={allSourcesData} loading={isLoading} />
         </section>
-    );
 }
 
 export default AllSources;

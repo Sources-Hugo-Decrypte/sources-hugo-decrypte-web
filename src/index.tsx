@@ -18,7 +18,9 @@ ReactDOM.render(
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/allsources" element={<AllSources />} />
-        <Route path="/search" element={<AvailableSoon />} />
+        <Route path="/search" element={<AvailableSoon />}>
+          <Route path=":source" element={<AvailableSoon />} />
+        </Route>
       </Routes>
       <Footer />
     </BrowserRouter>
