@@ -32,7 +32,7 @@ function Header() {
 
 function Top10() {
 
-  const { data: top10Data, isLoading, error } = useFetch<Top10Data>('/.netlify/functions/top10');
+  const { data: top10Data, isLoading, error } = useFetch<Top10Data>('/.netlify/functions/top10', true);
 
   if (error) {
     console.error(error)

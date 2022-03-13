@@ -17,7 +17,7 @@ function Header() {
 
 function AllSources() {
 
-    const { data: allSourcesData, isLoading, error } = useFetch<AllSourcesData>('/.netlify/functions/allsources');
+    const { data: allSourcesData, isLoading, error } = useFetch<AllSourcesData>('/.netlify/functions/allsources', true);
 
     if (error) {
         console.error(error)

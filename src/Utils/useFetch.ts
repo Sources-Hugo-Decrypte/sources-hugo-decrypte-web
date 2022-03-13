@@ -6,36 +6,47 @@ type FetchResult<T> = {
   error: string | null
 }
 
-function useFetch<T>(url: string): FetchResult<T> {
+function useFetch<T>(url: string, storeInCache: boolean = false): FetchResult<T> {
 
   const [result, setResult] = useState({
     data: {} as T,
     isLoading: true,
     error: null
   } as FetchResult<T>)
+  const cacheKey = `cache::${url}`
 
   useEffect(() => {
-    (async function () {
+    const cachedString = storeInCache ? sessionStorage.getItem(cacheKey) : null
 
-      try {
-        const response = await fetch(url)
+    if (cachedString !== null) {
+      setResult(res => res = { ...res, data: JSON.parse(cachedString) as T, isLoading: false })
+    } else {
+      (async function () {
 
-        if (response.ok) {
-          const responseData: T = await response.json()
+        try {
+          const response = await fetch(url)
 
-          setResult(res => res = { ...res, data: responseData, isLoading: false })
-        } else {
-          setResult(res => res = { ...res, error: `Error ${response.status}: ${response.statusText}.` })
+          if (response.ok) {
+            const responseData: T = await response.json()
+
+            if (storeInCache) {
+              sessionStorage.setItem(cacheKey, JSON.stringify(responseData))
+            }
+            setResult(res => res = { ...res, data: responseData, isLoading: false })
+          } else {
+            setResult(res => res = { ...res, error: `Error ${response.status}: ${response.statusText}.` })
+          }
+        } catch (error) {
+          let message = ''
+
+          if (error instanceof Error) message = error.message
+          else message = String(error)
+          setResult(res => res = { ...res, error: message })
         }
-      } catch (error) {
-        let message = ''
+      })()
+    }
 
-        if (error instanceof Error) message = error.message
-        else message = String(error)
-        setResult(res => res = { ...res, error: message })
-      }
-    })()
-  }, [url])
+  }, [url, storeInCache, cacheKey])
 
   return result
 }

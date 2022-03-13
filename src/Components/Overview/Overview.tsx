@@ -17,7 +17,7 @@ function OverviewItem({ value, title, description, icon, loading = false }: { va
 }
 
 function Overview() {
-    const { data: overviewData, isLoading, error } = useFetch<OverviewData>('/.netlify/functions/overview');
+    const { data: overviewData, isLoading, error } = useFetch<OverviewData>('/.netlify/functions/overview', true)
 
     if (error) {
         console.error(error)

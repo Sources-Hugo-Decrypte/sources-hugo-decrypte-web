@@ -30,7 +30,7 @@ function Header() {
 
 function PeriodSources() {
 
-  const { data: periodSourcesData, isLoading, error } = useFetch<PeriodSourcesData>('/.netlify/functions/periodsources');
+  const { data: periodSourcesData, isLoading, error } = useFetch<PeriodSourcesData>('/.netlify/functions/periodsources', true);
 
   if (error) {
     console.error(error)

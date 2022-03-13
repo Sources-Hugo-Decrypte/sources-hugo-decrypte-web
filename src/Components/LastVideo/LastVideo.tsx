@@ -3,7 +3,7 @@ import SectionTitle from "../Common/SectionTitle";
 import useFetch from "../../Utils/useFetch";
 
 function LastVideo() {
-    const { data: videoData, isLoading, error } = useFetch<LastVideoData>('/.netlify/functions/lastvideo')
+    const { data: videoData, isLoading, error } = useFetch<LastVideoData>('/.netlify/functions/lastvideo', true)
 
     if (error) {
         console.error(error)

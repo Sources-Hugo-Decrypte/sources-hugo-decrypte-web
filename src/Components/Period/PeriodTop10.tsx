@@ -29,7 +29,7 @@ function Header() {
 
 function PeriodTop10() {
 
-  const { data: periodTop10Data, isLoading, error } = useFetch<Top10Data>('/.netlify/functions/periodtop10');
+  const { data: periodTop10Data, isLoading, error } = useFetch<Top10Data>('/.netlify/functions/periodtop10', true);
 
   if (error) {
     console.error(error)
