@@ -27,7 +27,7 @@ function Overview() {
         <SectionTitle title="En bref" />
         <div className="shadow-md rounded p-5 flex flex-col md:flex-row md:justify-around gap-10">
             <OverviewItem value={overviewData.totalVideos} title="Vidéos" description="Nombre total de vidéos sur la chaîne Hugo Décrypte - Actus du Jour." icon={<VideoCameraIcon className="h-8 w-8" />} loading={loading} />
-            <OverviewItem value={overviewData.totalSources} title="Sources" description={<>Nombre total des sources citées.<br /> (Exemple: lemonde.fr, francetvinfo.fr, ...)</>} icon={<NewspaperIcon className="h-7 w-7" />} loading={loading} />
+            <OverviewItem value={overviewData.totalSources} title="Sources" description="Nombre total de sources différentes citées. (Exemple: lemonde.fr, francetvinfo.fr, ...)" icon={<NewspaperIcon className="h-7 w-7" />} loading={loading} />
             <OverviewItem value={overviewData.totalLinks} title="Liens" description="Nombre total de liens renseignés toutes sources confondues." icon={<LinkIcon className="h-6 w-6" />} loading={loading} />
         </div>
     </section>
