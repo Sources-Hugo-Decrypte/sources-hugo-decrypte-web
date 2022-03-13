@@ -8,9 +8,11 @@ type FetchResult<T> = {
 
 function useFetch<T>(url: string): FetchResult<T> {
 
-  const [data, setData] = useState<T>({} as T)
-  const [isLoading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [result, setResult] = useState({
+    data: {} as T,
+    isLoading: true,
+    error: null
+  } as FetchResult<T>)
 
   useEffect(() => {
     (async function () {
@@ -21,26 +23,21 @@ function useFetch<T>(url: string): FetchResult<T> {
         if (response.ok) {
           const responseData: T = await response.json()
 
-          setData(d => d = responseData)
-          setLoading(loading => loading = false)
+          setResult(res => res = { ...res, data: responseData, isLoading: false })
         } else {
-          setError(e => e = `Error ${response.status}: ${response.statusText}.`)
+          setResult(res => res = { ...res, error: `Error ${response.status}: ${response.statusText}.` })
         }
       } catch (error) {
         let message = ''
 
         if (error instanceof Error) message = error.message
         else message = String(error)
-        setError(e => e = message)
+        setResult(res => res = { ...res, error: message })
       }
     })()
   }, [url])
 
-  return {
-    data,
-    isLoading,
-    error
-  }
+  return result
 }
 
 export default useFetch
