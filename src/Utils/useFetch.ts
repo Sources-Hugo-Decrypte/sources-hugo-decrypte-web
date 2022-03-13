@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react"
 
-function useFetch<T>(url: string): [T, boolean, string | null] {
+type FetchResult<T> = {
+  data: T,
+  isLoading: boolean,
+  error: string | null
+}
+
+function useFetch<T>(url: string): FetchResult<T> {
 
   const [data, setData] = useState<T>({} as T)
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -30,11 +36,11 @@ function useFetch<T>(url: string): [T, boolean, string | null] {
     })()
   }, [url])
 
-  return [
+  return {
     data,
-    loading,
+    isLoading,
     error
-  ]
+  }
 }
 
 export default useFetch

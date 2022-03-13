@@ -27,12 +27,12 @@ function Header() {
     <p className="mb-4 text-sm text-gray-700">
       Ce graphique présente le nombre de liens cités par source depuis la premère video de la chaîne (le 20/12/2015). Pour voir l’ensemble des sources <a href="/allsources" className="underline">cliquez-ici</a>.
     </p>
-    </div>;
+  </div>
 }
 
 function Top10() {
 
-  const [top10Data, loading, error] = useFetch<Top10Data>('/.netlify/functions/top10');
+  const { data: top10Data, isLoading, error } = useFetch<Top10Data>('/.netlify/functions/top10');
 
   if (error) {
     console.error(error)
@@ -64,7 +64,7 @@ function Top10() {
         borderWidth: 2,
       },
     },
-    maintainAspectRatio : false,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -72,11 +72,11 @@ function Top10() {
     }
   }
 
-  if (loading){
+  if (isLoading) {
     return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
-            <Header />
-            <div className="h-80 md:h-80 m-1"><Bar options={optionsWaiting} data={barDataWaiting} className="animate-pulse shadow-md rounded md:p-5"/></div>
-          </section>;
+      <Header />
+      <div className="h-80 md:h-80 m-1"><Bar options={optionsWaiting} data={barDataWaiting} className="animate-pulse shadow-md rounded md:p-5" /></div>
+    </section>;
   }
 
   const barData = {
@@ -99,14 +99,14 @@ function Top10() {
         borderWidth: 2,
       },
     },
-    maintainAspectRatio : false,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
       },
       tooltip: {
         callbacks: {
-          footer: function(tooltipItems: Array<any>) {
+          footer: function (tooltipItems: Array<any>) {
             let footerText: string = ''
 
             tooltipItems.forEach((tooltipItem) => {
@@ -124,7 +124,7 @@ function Top10() {
 
   return <section className="m-4 md:w-2/3 md:mx-auto md:my-16">
     <Header />
-    <div className="h-80 md:h-80"><Bar options={options} data={barData} className="shadow-md rounded p-2 md:p-5"/></div>
+    <div className="h-80 md:h-80"><Bar options={options} data={barData} className="shadow-md rounded p-2 md:p-5" /></div>
   </section>;
 }
 
