@@ -152,11 +152,11 @@ function ListSources({ fetchedData, loading }: { fetchedData: AllSourcesData, lo
                             {
                                 Array(3).fill(0).map((_, index) => (
                                     <tr className="grid grid-cols-5 mb-4 sm:text-justify sm:contents group" key={index + '-row'}>
-                                        <td className="col-span-1 ml-2 mt-2 text-center my-auto border-black border-2 rounded sm:rounded-none sm:rounded-l font-bold sm:m-0 sm:pt-1 sm:pl-2 sm:border-none sm:text-justify sm:group-odd:bg-gray-100"><div className="mx-auto h-2 w-6 m-2 md:ml-0 bg-gray-300 rounded" /></td>
-                                        <td className="col-span-4 pt-3 pl-2 sm:whitespace-nowrap font-bold text-lg sm:text-base sm:col-span-1 sm:p-0 sm:py-1 sm:font-normal sm:group-odd:bg-gray-100"><div className="h-2 sm:w-40 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
-                                        <td className="col-span-full pl-1.5 py-2 sm:col-span-1 sm:p-0 sm:py-1 sm:pl-1 sm:group-odd:bg-gray-100"><div className="h-2 w-40 sm:w-16 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
-                                        <td className="hidden col-span-1 py-1 sm:block sm:group-odd:bg-gray-100"><div className="h-2 w-16 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
-                                        <td className="col-span-full pl-1.5 py-2 rounded-r sm:col-span-1 sm:p-0 sm:py-1 -mt-1 sm:-mt-0 sm:group-odd:bg-gray-100"><div className="h-2 w-16 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="col-span-1 ml-2 mt-2 text-center my-auto border-black border-2 rounded sm:rounded-none sm:rounded-l font-bold sm:m-0 sm:pt-1 sm:pl-2 sm:border-none sm:text-justify sm:group-odd:bg-gray-100"><div className="mx-auto h-2 w-1/2 m-2 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="col-span-4 pt-3 pl-2 sm:whitespace-nowrap font-bold text-lg sm:text-base sm:col-span-1 sm:p-0 sm:py-1 sm:font-normal sm:group-odd:bg-gray-100"><div className="h-2 sm:w-3/4 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="col-span-full pl-1.5 py-2 sm:col-span-1 sm:p-0 sm:py-1 sm:pl-1 sm:group-odd:bg-gray-100"><div className="h-2 w-3/5 sm:w-3/4 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="hidden col-span-1 py-1 sm:block sm:group-odd:bg-gray-100"><div className="h-2 w-1/2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
+                                        <td className="col-span-full pl-1.5 py-2 rounded-r sm:col-span-1 sm:p-0 sm:py-1 -mt-1 sm:-mt-0 sm:group-odd:bg-gray-100"><div className="h-2 w-2/5 sm:w-1/2 mt-2 ml-1 md:ml-0 bg-gray-300 rounded" /></td>
                                     </tr>
                                 ))
                             }
