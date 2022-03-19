@@ -8,7 +8,7 @@ function Header() {
         <SectionTitle title="Toutes les sources" />
         <div className="shadow-md rounded m-4 p-4 md:mb-8 md:mx-auto">
             <p>
-                Le tableau ci-dessous renseigne l'ensemble des sources utilisées au moins une fois. Le nombre de liens correspond au nombre d'utilisations de la source.
+                La liste ci-dessous renseigne l'ensemble des sources utilisées au moins une fois. Le nombre de liens correspond au nombre d'utilisations de la source.
                 <br /><br />Plus la source est utilisée, plus elle est en haut du classement. En cas d'égalité, c'est la source qui a été utilisée le plus récemment qui est considérée en premier. La date de la dernière utilisation est indiquée pour chaque source.
             </p>
         </div>
