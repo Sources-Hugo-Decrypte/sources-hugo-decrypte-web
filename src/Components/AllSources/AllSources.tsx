@@ -1,11 +1,11 @@
 import AllSourcesData from '../../Data/AllSourcesData';
 import useFetch from '../../Utils/useFetch';
 import SectionTitle from "../Common/SectionTitle";
+import ChartSources from './ChartSources';
 import ListSources from './ListSources';
 
 function Header() {
     return <div>
-        <SectionTitle title="Toutes les sources" />
         <div className="shadow-md rounded m-4 p-4 md:mb-8 md:mx-auto">
             <p>
                 La liste ci-dessous renseigne l'ensemble des sources utilisées au moins une fois. Le nombre de liens correspond au nombre d'utilisations de la source.
@@ -24,6 +24,8 @@ function AllSources() {
     }
 
     return <section className="m-4 md:w-4/5 md:mx-auto md:my-16 lg:w-2/3">
+        <SectionTitle title="Toutes les sources" />
+        <ChartSources fetchedData={allSourcesData} loading={isLoading} />
         <Header />
         <ListSources fetchedData={allSourcesData} loading={isLoading} />
     </section>
