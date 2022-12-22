@@ -1,5 +1,11 @@
 # Sources Hugo Décrypte - frontend [![Netlify Status](https://api.netlify.com/api/v1/badges/ea7cb257-0b11-4ba6-829e-a736057a3f35/deploy-status)](https://app.netlify.com/sites/sourceshugodecrypte/deploys)
 
+---
+
+:x: **CE PROJET N'EST PLUS ACTIF PAS MANQUE DE TEMPS ET DE VISIBILITE. LE CODE SOURCE RESTE TOUTEFOIS DISPONIBLE.** :x:
+
+---
+
 Ce répertoire contient le code source de la partie web du projet "Sources Hugo Décrypte".
 
 Le rôle de cette partie est :
