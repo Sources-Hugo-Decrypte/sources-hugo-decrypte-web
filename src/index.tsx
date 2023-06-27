@@ -9,11 +9,13 @@ import AllSources from './Components/AllSources/AllSources';
 import AvailableSoon from './Components/AvailableSoon/AvailableSoon';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import WarningBanner from './Components/WarningBanner/WarningBanner';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Header />
+      <WarningBanner />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
