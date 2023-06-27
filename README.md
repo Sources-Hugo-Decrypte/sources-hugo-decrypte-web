@@ -4,6 +4,8 @@
 
 :x: **CE PROJET N'EST PLUS ACTIF PAR MANQUE DE TEMPS ET DE VISIBILITE. LE CODE SOURCE RESTE TOUTEFOIS DISPONIBLE.** :x:
 
+**UNE ARCHIVE DU SITE WEB EST DISPONIBLE A L'ADRESSE SUIVANTE:** [sourceshugodecrypte.netlify.app](https://sourceshugodecrypte.netlify.app)
+
 ---
 
 Ce répertoire contient le code source de la partie web du projet "Sources Hugo Décrypte".
