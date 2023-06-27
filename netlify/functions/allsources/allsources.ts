@@ -4,7 +4,7 @@ const postgres = require('postgres');
 
 export const handler: Handler = async (event, context) => {
 
-  const sql = postgres(process.env.HDS_DATABASE_CON, { max: 1, idle_timeout: 2 })
+  const sql = postgres(process.env.REACT_APP_HDS_DATABASE_CON, { max: 1, idle_timeout: 2 })
 
   const allSourcesData: AllSourcesData = [];
 
